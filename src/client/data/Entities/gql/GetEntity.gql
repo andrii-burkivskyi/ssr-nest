@@ -1,0 +1,8 @@
+query GetEntity($id: Int!) {
+  data: entity(id: $id) {
+    id
+    #keys
+    name
+    #keys
+  }
+}

@@ -1,0 +1,13 @@
+query GetEntitiesList($input: EntityPaginationInput) {
+  data: entities(input: $input) {
+    items {
+      id
+      #keys
+      name
+      #keys
+    }
+    take
+    page
+    totalItems
+  }
+}

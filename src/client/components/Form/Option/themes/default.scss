@@ -1,0 +1,36 @@
+@include element("container", "default") {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 36px;
+    padding: 3px 5px;
+
+    @include mod("is_selected") {
+        background-color: $color-ui-kit-field-inverse;
+    }
+
+    &:hover {
+        background-color: $color-ui-kit-field-inverse;
+    }
+}
+
+@include element("checkbox", "default") {
+    display: inline-block;
+    fill: transparent;
+    stroke: $color-ui-kit-field;
+    stroke-width: 2px;
+    height: 15px;
+    width: 15px;
+    margin-right: 5px;
+
+    @include mod("is_checked") {
+        fill: $color-ui-kit-field;
+    }
+}
+
+@include element("label", "default") {
+    display: inline-block;
+    padding-top: 3px;
+    color: $color-ui-kit-field;
+    font-family: $font-open-sans;
+}

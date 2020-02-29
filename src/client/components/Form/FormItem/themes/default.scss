@@ -1,0 +1,61 @@
+:root {
+    --form-item-default-color: var(--color-black-squeeze);
+    --form-item-default-focus-color: var(--color-moon-yellow);
+    --form-item-default-error-color: var(--color-red-orange);
+
+    --form-item-default-disable-color: rgba(var(--color-black-squeeze), .8);
+}
+
+@include element("container", "default") {
+    display: flex;
+    height: 100%;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @include mod("is_disabled") {
+        opacity: 0.7;
+    }
+}
+
+@include element("label", "default") {
+    font-family: var(--font-open-sans);
+    font-size: 14px;
+    line-height: 16px;
+    padding-bottom: 5px;
+    color: var(--form-item-default-color); 
+
+    @include mod("is_focused") {
+        color: var(--form-item-default-focus-color);
+    }
+
+    @include mod("is_error") {
+        color: var(--form-item-default-error-color)
+    }
+
+    @include mod("is_read_only") {
+        color: var(--form-item-default-color)
+    }
+
+    @include mod("is_disabled") {
+        color: var(--form-item-default-disable-color)
+    }
+}
+
+@include element("item_container", "default") {
+    display: flex;
+    flex-direction: column;
+}
+
+@include element("error", "default") {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    text-align: right;
+    color: var(--form-item-default-error-color);
+    font-size: 12px;
+    line-height: 20px;
+    min-height: 20px;
+    font-family: var(--font-open-sans);
+    z-index: 10;
+}

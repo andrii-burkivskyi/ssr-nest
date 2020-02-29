@@ -1,0 +1,3 @@
+mutation DeleteEntity($input: DeleteEntityInput!){
+  data: deleteEntity(input: $input)
+}

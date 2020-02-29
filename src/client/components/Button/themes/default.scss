@@ -1,0 +1,62 @@
+:root {
+    --button-default-background-color: var(--color-black-squeeze-90);
+    --button-default-background-hover-color: var(--color-black-squeeze);
+    --button-default-color: var(--color-midnight);
+}
+
+@include element("button_container", "default") {
+    @include mod("is_disabled") {
+        cursor: not-allowed;
+    }
+}
+
+@include element("button", "default") {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+
+    text-transform: uppercase;
+
+    color: var(--button-default-color);
+    background-color: var(--button-default-background-color);
+
+    font-family: var(--font-open-sans);
+    font-size: 14px;
+
+    fill: var(--button-default-color);
+
+    &:hover {
+        background-color: var(--button-default-background-hover-color);
+    }
+
+    @include mod("is_disabled") {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
+@include element("text_container", "default") {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@include element("text", "default") {
+    margin: 0 5px;
+
+    vertical-align: middle;
+
+    font-weight: 600;
+    line-height: 40px;
+}
+
+@include element("counter", "default") {}
+
+@include element("icon", "default") {
+    width: 18px;
+    height: 18px;
+    margin: 0 5px;
+
+    vertical-align: middle;
+}

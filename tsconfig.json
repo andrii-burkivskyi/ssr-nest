@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "incremental": true,
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "rootDirs": ["src", "stories"],
+    "lib": [
+      "dom",
+      "esnext",
+      "es5",
+      "es2015.promise"
+    ],
+    "noImplicitAny": false,
+    "importHelpers": true,
+    "suppressImplicitAnyIndexErrors": false,
+    "noImplicitReturns": false,
+    "allowJs": true
+  },
+  "exclude": ["node_modules", "dist"]
+}

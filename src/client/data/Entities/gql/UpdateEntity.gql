@@ -1,0 +1,8 @@
+mutation UpdateEntity($input: UpdateEntityInput!) {
+  data: updateEntity(input: $input) {
+    id
+    #keys
+    name
+    #keys
+  }
+}

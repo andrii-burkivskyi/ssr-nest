@@ -1,0 +1,1 @@
+{"version":3,"file":"BaseLayout.store.js","sourceRoot":"","sources":["BaseLayout.store.ts"],"names":[],"mappings":";;;AAAA,qFAA0E;AAC1E,yEAAuE;AACvE,sBAAqC;AAGrC;IACI,yBACW,MAAwB,EACxB,QAAyB;QADzB,WAAM,GAAN,MAAM,CAAkB;QACxB,aAAQ,GAAR,QAAQ,CAAiB;IACjC,CAAC;IAJK,eAAe;QAD3B,2BAAO,CAAC,iBAAiB,CAAC;iDAGJ,mBAAgB;YACd,kCAAe;OAH3B,eAAe,CAK3B;IAAD,sBAAC;CAAA,AALD,IAKC;AALY,0CAAe"}
