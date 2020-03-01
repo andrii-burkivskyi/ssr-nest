@@ -25,9 +25,9 @@ export class NotFoundInterceptor implements ExceptionFilter {
       const ctx = host.switchToHttp();
       const response = ctx.getResponse();
       if (
-                exception?.status === HttpStatus.NOT_FOUND &&
-                exception?.path?.includes('/index.html') &&
-                !isFileUrl(host.getArgByIndex(0).originalUrl)
+          exception?.status === HttpStatus.NOT_FOUND &&
+          exception?.path?.includes('/index.html') &&
+          !isFileUrl(host.getArgByIndex(0).originalUrl)
       ) {
         // const app = new BaseLayoutModule();
         // const location: LocationService = ModuleBase.services.get(LocationService);

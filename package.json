@@ -31,8 +31,10 @@
     "@nestjs/typeorm": "^6.3.1",
     "@storybook/addon-storyshots": "^5.3.13",
     "@storybook/addon-storyshots-puppeteer": "^5.3.13",
+    "@storybook/node-logger": "^5.3.14",
     "@storybook/react": "^5.3.13",
     "@types/flat": "^0.0.28",
+    "@types/graphql": "^14.5.0",
     "@types/history": "^4.7.4",
     "@types/keymaster": "^1.6.28",
     "@types/lodash.isplainobject": "^4.0.6",
@@ -77,6 +79,7 @@
     "rxjs": "^6.5.3",
     "sqlite3": "^4.1.1",
     "ts-nameof": "^4.1.0",
+    "type-graphql": "^0.17.6",
     "typeorm": "^0.2.22",
     "webpack": "4.35.2"
   },

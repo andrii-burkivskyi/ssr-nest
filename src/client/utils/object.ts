@@ -2,7 +2,8 @@ import isPlainObject from 'lodash.isplainobject';
 
 export const isEmpty = (obj?: CommonMap) => (obj ? Object.keys(obj).length === 0 : false);
 
-export const isRequiredFieldsNotEmpty = <T extends Record<string, any>>(obj: T, keys: Array<keyof T>) => keys.every((key) => obj[key] !== undefined);
+export const isRequiredFieldsNotEmpty = <T extends Record<string, any>>(obj: T, keys: Array<keyof T>) => keys
+  .every((key) => obj[key] !== undefined);
 
 export const clearUndefinedValues = <T extends Record<string, any>>(obj: T): T => {
   if (!isPlainObject(obj)) { return obj; }

@@ -16,7 +16,7 @@ export class ProjectDTO {
     @Field()
     url!: string;
 
-    @Field((type) => [EntityDTO], { defaultValue: [] })
+    @Field(() => [EntityDTO], { defaultValue: [] })
     entities?: EntityDTO[];
 }
 

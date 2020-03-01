@@ -17,6 +17,6 @@ export class ProjectEntity {
     @Column()
     url!: string;
 
-    @OneToMany((type) => EntityEntity, (entity) => entity.project)
+    @OneToMany(() => EntityEntity, (entity) => entity.project)
     entities!: EntityEntity[];
 }

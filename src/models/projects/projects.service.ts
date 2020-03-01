@@ -25,12 +25,12 @@ export class ProjectsService {
   }
 
   async findById(id: number): Promise<ProjectEntity | undefined> {
-    return await this.projectsRepository.findOne({ id }, { relations: ['entities'] });
+    return this.projectsRepository.findOne({ id }, { relations: ['entities'] });
   }
 
   async create(input: CreateProjectInput): Promise<ProjectEntity> {
     const project = this.projectsRepository.create(input);
-    return await this.projectsRepository.save(project);
+    return this.projectsRepository.save(project);
   }
 
   async update(input: UpdateProjectInput): Promise<ProjectEntity | undefined> {
@@ -38,7 +38,7 @@ export class ProjectsService {
     if (currentProject) {
       const project = this.projectsRepository.create(merge(currentProject, input));
       await this.projectsRepository.save(project);
-      return await this.findById(input.id);
+      return this.findById(input.id);
     }
 
     throw new HttpException(`Can't find project with id [${input.id}]`, HttpStatus.NOT_FOUND);

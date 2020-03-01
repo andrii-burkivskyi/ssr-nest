@@ -21,6 +21,7 @@ export const matchUrl = (url: string, pattern: string, options?: TokensToRegexpO
     return undefined;
   }
 
+  // eslint-disable-next-line no-unused-vars
   const [matchedUrl, ...values] = match;
 
   return keys.reduce((params: CommonMap, key, index) => {
@@ -29,4 +30,7 @@ export const matchUrl = (url: string, pattern: string, options?: TokensToRegexpO
   }, {});
 };
 
-export const buildUrl = (pattern: string, params: CommonMap = DEFAULT_OBJECT) => compile(pattern, { encode: encodeURIComponent })(params);
+export const buildUrl = (pattern: string, params: CommonMap = DEFAULT_OBJECT) => compile(
+  pattern,
+  { encode: encodeURIComponent },
+)(params);

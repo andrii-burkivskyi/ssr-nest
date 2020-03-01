@@ -1,7 +1,7 @@
 import {
   Resolver, Query, Mutation, Args,
 } from '@nestjs/graphql';
-import { Int, Arg } from 'type-graphql';
+import { Int } from 'type-graphql';
 import { ProjectsService } from './projects.service';
 import { ProjectDTO, ProjectPaginationDTO } from './projects.dto';
 import { CreateProjectInput } from './inputs/create-project-input';
@@ -14,39 +14,39 @@ import { IPaginationInput } from '../../common/pagination/pagination.input';
 @Resolver(() => ProjectDTO)
 export class ProjectsResolver {
   constructor(
-        private readonly projectsService: ProjectsService,
-        private readonly entitiesService: EntitiesService,
+    private readonly projectsService: ProjectsService,
+    private readonly entitiesService: EntitiesService,
   ) { }
 
-    @Query(() => ProjectDTO, { nullable: true })
+  @Query(() => ProjectDTO, { nullable: true })
   async project(@Args({ name: 'id', type: () => Int }) id: number) {
-    return await this.projectsService.findById(id);
+    return this.projectsService.findById(id);
   }
 
-    @Query(() => ProjectPaginationDTO)
-    async projects(
-        @Args({ name: 'input', type: () => ProjectPaginationInput, defaultValue: {} })
-          input: IPaginationInput<ProjectFilterInput>,
-    ) {
-      return await this.projectsService.findAll(input);
-    }
+  @Query(() => ProjectPaginationDTO)
+  async projects(
+    @Args({ name: 'input', type: () => ProjectPaginationInput, defaultValue: {} })
+      input: IPaginationInput<ProjectFilterInput>,
+  ) {
+    return this.projectsService.findAll(input);
+  }
 
-    @Mutation(() => ProjectDTO)
-    async createProject(@Args({ name: 'input', type: () => CreateProjectInput }) input: CreateProjectInput) {
-      return await this.projectsService.create(input);
-    }
+  @Mutation(() => ProjectDTO)
+  async createProject(@Args({ name: 'input', type: () => CreateProjectInput }) input: CreateProjectInput) {
+    return this.projectsService.create(input);
+  }
 
-    @Mutation(() => ProjectDTO)
-    async updateProject(@Args({ name: 'input', type: () => UpdateProjectInput }) input: UpdateProjectInput) {
-      return await this.projectsService.update(input);
-    }
+  @Mutation(() => ProjectDTO)
+  async updateProject(@Args({ name: 'input', type: () => UpdateProjectInput }) input: UpdateProjectInput) {
+    return this.projectsService.update(input);
+  }
 
-    @Mutation(() => Int)
-    async deleteProject(@Args({ name: 'input', type: () => DeleteProjectInput }) input: DeleteProjectInput) {
-      const project = await this.projectsService.findById(input.id);
-      if (project && project.entities.length > 0) {
-        await this.entitiesService.deleteList(project.entities);
-      }
-      return await this.projectsService.delete(input);
+  @Mutation(() => Int)
+  async deleteProject(@Args({ name: 'input', type: () => DeleteProjectInput }) input: DeleteProjectInput) {
+    const project = await this.projectsService.findById(input.id);
+    if (project && project.entities.length > 0) {
+      await this.entitiesService.deleteList(project.entities);
     }
+    return this.projectsService.delete(input);
+  }
 }

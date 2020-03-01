@@ -5,19 +5,19 @@ import { ICommonFilterInput } from '.';
 export const EnumFilterInput = <TItem extends object>(TItemEnum: TItem, name: string) => {
   @InputType(`${name}EnumFilterInput`)
   class EnumFilterInputClass implements ICommonFilterInput {
-    @Field((type) => TItemEnum, { nullable: true })
+    @Field(() => TItemEnum, { nullable: true })
     equal?: TItem;
 
-    @Field((type) => TItemEnum, { nullable: true })
+    @Field(() => TItemEnum, { nullable: true })
     not_equal?: TItem;
 
-    @Field((type) => [TItemEnum], { nullable: true })
+    @Field(() => [TItemEnum], { nullable: true })
     in?: TItem[];
 
-    @Field((type) => [TItemEnum], { nullable: true })
+    @Field(() => [TItemEnum], { nullable: true })
     not_in?: TItem[];
 
-    @Field((type) => Order, { nullable: true })
+    @Field(() => Order, { nullable: true })
     order?: Order;
   }
 

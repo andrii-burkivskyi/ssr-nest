@@ -26,13 +26,13 @@ export class EntitiesService {
   }
 
   async findById(id: number): Promise<EntityEntity | undefined> {
-    return await this.entitiesRepository.findOne({ id }, { relations: ['project'] });
+    return this.entitiesRepository.findOne({ id }, { relations: ['project'] });
   }
 
   async create(input: CreateEntityInput): Promise<EntityEntity | undefined> {
     const entity = this.entitiesRepository.create(input);
     const response = await this.entitiesRepository.save(entity);
-    return await this.findById(response.id);
+    return this.findById(response.id);
   }
 
   async update(input: UpdateEntityInput): Promise<EntityEntity | undefined> {
@@ -41,7 +41,7 @@ export class EntitiesService {
       const { project, ...entityProps } = input;
       const entity = this.entitiesRepository.create(merge(currentEntity, entityProps));
       await this.entitiesRepository.save(entity, { reload: false });
-      return await this.findById(input.id);
+      return this.findById(input.id);
     }
     throw new HttpException(`Can't find entity with id [${input.id}]`, HttpStatus.NOT_FOUND);
   }

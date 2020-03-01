@@ -12,6 +12,6 @@ export class EntityEntity {
     @Column()
     name!: string;
 
-    @ManyToOne((type) => ProjectEntity, (project) => project.entities)
+    @ManyToOne(() => ProjectEntity, (project) => project.entities)
     project!: ProjectEntity;
 }

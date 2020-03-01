@@ -7,7 +7,7 @@ export enum JoinType {
     INNER = 'inner',
 }
 
-interface IJoinProps<Entity = any> {
+interface JoinProps {
     type: JoinType;
     alias: string;
 }
@@ -23,7 +23,10 @@ const buildQueryFilter = <E>(filter: object = {}, query: SelectQueryBuilder<E>, 
   if (isCommonFiltersMap(filter)) {
     Object.entries<ICommonFilterInput>(filter).forEach(([key, value]) => {
       if (value.equal) {
-        query.andWhere(`${getKey(key).linkName} LIKE :${getKey(key).varName}_equal`, { [`${getKey(key).varName}_equal`]: value.equal });
+        query.andWhere(
+          `${getKey(key).linkName} LIKE :${getKey(key).varName}_equal`,
+          { [`${getKey(key).varName}_equal`]: value.equal },
+        );
       }
       if (value.not_equal) {
         query.andWhere(
@@ -32,7 +35,10 @@ const buildQueryFilter = <E>(filter: object = {}, query: SelectQueryBuilder<E>, 
         );
       }
       if (value.in) {
-        query.andWhere(`${getKey(key).linkName} IN (:...${getKey(key).varName}_in)`, { [`${getKey(key).varName}_in`]: value.in });
+        query.andWhere(
+          `${getKey(key).linkName} IN (:...${getKey(key).varName}_in)`,
+          { [`${getKey(key).varName}_in`]: value.in },
+        );
       }
       if (value.not_in) {
         query.andWhere(
@@ -41,19 +47,34 @@ const buildQueryFilter = <E>(filter: object = {}, query: SelectQueryBuilder<E>, 
         );
       }
       if (value.lt) {
-        query.andWhere(`${getKey(key).linkName} < :${getKey(key).varName}_lt`, { [`${getKey(key).varName}_lt`]: value.lt });
+        query.andWhere(
+          `${getKey(key).linkName} < :${getKey(key).varName}_lt`,
+          { [`${getKey(key).varName}_lt`]: value.lt },
+        );
       }
       if (value.lte) {
-        query.andWhere(`${getKey(key).linkName} <= :${getKey(key).varName}_lte`, { [`${getKey(key).varName}_lte`]: value.lte });
+        query.andWhere(
+          `${getKey(key).linkName} <= :${getKey(key).varName}_lte`,
+          { [`${getKey(key).varName}_lte`]: value.lte },
+        );
       }
       if (value.gt) {
-        query.andWhere(`${getKey(key).linkName} > :${getKey(key).varName}_gt`, { [`${getKey(key).varName}_gt`]: value.gt });
+        query.andWhere(
+          `${getKey(key).linkName} > :${getKey(key).varName}_gt`,
+          { [`${getKey(key).varName}_gt`]: value.gt },
+        );
       }
       if (value.gte) {
-        query.andWhere(`${getKey(key).linkName} >= :${getKey(key).varName}_gte`, { [`${getKey(key).varName}_gte`]: value.gte });
+        query.andWhere(
+          `${getKey(key).linkName} >= :${getKey(key).varName}_gte`,
+          { [`${getKey(key).varName}_gte`]: value.gte },
+        );
       }
       if (value.contains) {
-        query.andWhere(`${getKey(key).linkName} LIKE :${getKey(key).varName}_contains`, { [`${getKey(key).varName}_contains`]: `%${value.contains}%` });
+        query.andWhere(
+          `${getKey(key).linkName} LIKE :${getKey(key).varName}_contains`,
+          { [`${getKey(key).varName}_contains`]: `%${value.contains}%` },
+        );
       }
       if (value.not_in) {
         query.andWhere(
@@ -65,7 +86,11 @@ const buildQueryFilter = <E>(filter: object = {}, query: SelectQueryBuilder<E>, 
   }
 };
 
-export const getSelectQueryBuilder = <E, P extends any>(repository: Repository<E>, input: PaginationInput<P>, joins: IJoinProps[] = []) => {
+export const getSelectQueryBuilder = <E, P extends any>(
+  repository: Repository<E>,
+  input: PaginationInput<P>,
+  joins: JoinProps[] = [],
+) => {
   const query = repository.createQueryBuilder('q');
   joins.forEach((join) => {
     if (join.type === JoinType.LEFT) {
@@ -80,7 +105,7 @@ export const getSelectQueryBuilder = <E, P extends any>(repository: Repository<E
     }
   });
   if (isCommonFiltersMap(input.filter)) {
-    Object.entries<ICommonFilterInput>(input.filter).forEach(([key, value]) => {
+    Object.entries<ICommonFilterInput>(input.filter).forEach(() => {
       buildQueryFilter(input.filter, query, (keyName: string) => ({
         linkName: `q.${keyName}`,
         varName: keyName,
@@ -90,7 +115,11 @@ export const getSelectQueryBuilder = <E, P extends any>(repository: Repository<E
   return query;
 };
 
-export const getPaginationResponse = async <E, P>(repository: Repository<E>, input: IPaginationInput<P>, joins: IJoinProps[] = []) => {
+export const getPaginationResponse = async <E, P>(
+  repository: Repository<E>,
+  input: IPaginationInput<P>,
+  joins: JoinProps[] = [],
+) => {
   const query = getSelectQueryBuilder(repository, input, joins);
   query.take(input.take);
   query.skip((input.take ?? 20) * (input.page ?? 0));

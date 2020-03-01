@@ -4,16 +4,16 @@ import { PaginationInput } from '../../../common/pagination/pagination.input';
 
 @InputType()
 export class ProjectFilterInput {
-  @Field((type) => IdFilterInput, { nullable: true })
+  @Field(() => IdFilterInput, { nullable: true })
   id?: IdFilterInput;
 
-  @Field((type) => StringFilterInput, { nullable: true })
+  @Field(() => StringFilterInput, { nullable: true })
   name?: StringFilterInput;
 
-  @Field((type) => StringFilterInput, { nullable: true })
+  @Field(() => StringFilterInput, { nullable: true })
   color?: StringFilterInput;
 
-  @Field((type) => StringFilterInput, { nullable: true })
+  @Field(() => StringFilterInput, { nullable: true })
   url?: StringFilterInput;
 }
 

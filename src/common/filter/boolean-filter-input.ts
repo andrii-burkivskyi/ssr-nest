@@ -5,12 +5,12 @@ import { ICommonFilterInput } from '.';
 
 @InputType()
 export class BooleanFilterInput implements ICommonFilterInput {
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   equal?: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   not_equal?: string;
 
-  @Field((type) => Order, { nullable: true })
+  @Field(() => Order, { nullable: true })
   order?: Order;
 }

@@ -4,24 +4,24 @@ import { ICommonFilterInput } from '.';
 
 @InputType()
 export class StringFilterInput implements ICommonFilterInput {
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   equal?: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   not_equal?: string;
 
-  @Field((type) => [String], { nullable: true })
+  @Field(() => [String], { nullable: true })
   in?: string[];
 
-  @Field((type) => [String], { nullable: true })
+  @Field(() => [String], { nullable: true })
   not_in?: string[];
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   contains?: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   not_contains?: string;
 
-  @Field((type) => Order, { nullable: true })
+  @Field(() => Order, { nullable: true })
   order?: Order;
 }
