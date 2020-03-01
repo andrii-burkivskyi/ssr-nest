@@ -7,7 +7,8 @@ import { t } from "../../../utils/i18n/translations";
 
 import bem from "../../../utils/bem";
 
-import styles from "./form_item.scss";
+// import styles from "./form_item.scss";
+const styles = {} as any;
 
 @observer
 export default class FormItem extends Component<ViewOf<FormItemModel>> {

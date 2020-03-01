@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { BaseLayoutModule } from "./pages/BaseLayout";
 import { ModuleView } from "./core/decorators/module/Module.view";
+import { BaseLayoutModule } from "./pages/BaseLayout/index";
 
 const app = new BaseLayoutModule();
 

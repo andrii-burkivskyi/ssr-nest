@@ -13,7 +13,7 @@ import { ProjectEntity } from './models/projects/projects.entity';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: path.resolve(__dirname, '../..'),
+      rootPath: path.resolve(__dirname, '../public'),
     }),
     TypeOrmModule.forRoot({
       type: 'sqlite',
@@ -22,7 +22,6 @@ import { ProjectEntity } from './models/projects/projects.entity';
       synchronize: true,
       logging: false,
       entities: [EntityEntity, ProjectEntity],
-      // entities: ['src/models/**/*.ts'],
     }),
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',

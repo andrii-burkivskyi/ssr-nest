@@ -16,6 +16,7 @@ import { styles } from "./ProjectsList.jss";
 export class ProjectsListView extends React.Component<ViewOf<ProjectsListStore>> {
     render() {
         const { model } = this.props;
+        console.log("data")
         return (
             <Jss styles={styles}>
                 {(classes) => (

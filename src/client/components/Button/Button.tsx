@@ -8,7 +8,8 @@ import { t } from "../../utils/i18n/translations";
 
 import ButtonStore from "./Button.store";
 
-import styles from "./button.scss"
+// import styles from "./button.scss"
+const styles = {} as any;
 
 @observer
 export default class Button extends Component<ViewOf<ButtonStore>> {

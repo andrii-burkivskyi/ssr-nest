@@ -5,12 +5,11 @@ import { BaseLayout } from "./BaseLayout.imports";
 
 export const SidebarNavModulesList = ModuleBase.list(
     BaseLayout.FrontendSidebarNavModule,
-    BaseLayout.BackendSidebarNavModule
+    BaseLayout.BackendSidebarNavModule,
 );
 
 export const PagesModulesList = ModuleBase.list(
     BaseLayout.ProjectsModule,
-    // .BackendEntityModule
 );
 
 @Module({

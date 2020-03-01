@@ -8,7 +8,8 @@ import { t } from "../../../../utils/i18n/translations";
 import Button from "../../../../components/Button/Button";
 
 import { ProjectModalStore } from "./ProjectModal.store";
-import styles from "./project-modal.scss";
+// import styles from "./project-modal.scss";
+const styles = {} as any;
 
 @observer
 export class ProjectModalView extends Component<ViewOf<ProjectModalStore>> {

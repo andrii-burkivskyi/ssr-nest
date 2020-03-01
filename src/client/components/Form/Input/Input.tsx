@@ -12,7 +12,8 @@ import { t } from "../../../utils/i18n/translations";
 import arrow from "../../../icons/arrow.svg";
 
 import InputStore from "./Input.store";
-import styles from "./form_input.scss";
+// import styles from "./form_input.scss";
+const styles = {} as any;
 
 @observer
 export default class Input extends Component<ViewOf<InputStore>> {

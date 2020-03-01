@@ -1,10 +1,9 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2016",
+    "module": "es2015",
+    "target": "ES5",
     "jsx": "react",
     "declaration": false,
-    "removeComments": true,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -12,25 +11,27 @@
     "strict": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
-    "incremental": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "rootDirs": ["src", "stories"],
+    "rootDirs": ["src"],
     "lib": [
       "dom",
       "esnext",
       "es5",
-      "es2015.promise",
-      "es2016",
-      "esnext.asynciterable",
+      "es2015.promise"
     ],
     "noImplicitAny": false,
     "importHelpers": true,
     "suppressImplicitAnyIndexErrors": false,
     "noImplicitReturns": false,
     "allowJs": true,
-    "outDir": "./dist",
-    "baseUrl": "./src"
+    "baseUrl": "../src"
   },
-  "exclude": ["./node_modules/**/*", "./dist/**/*", "./configs/**/*"]
+  "include": [
+    "../src/client/**/*"
+  ],
+  "exclude": [
+    "../node_modules/**/*",
+    "../configs/**/*"
+  ]
 }

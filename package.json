@@ -8,8 +8,8 @@
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "watch:client": "cross-env webpack-dev-server --hot --mode development --output-pathinfo --inline --source-map --config configs/webpack.config.js",
-    "build:client": "NODE_ENV=production cross-env webpack --mode production --config configs/webpack.config.js",
+    "watch:client": "cross-env webpack-dev-server --hot --config configs/webpack.config.js",
+    "build:client": "NODE_ENV=production cross-env webpack --config configs/webpack.config.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.8.4",
+    "@hot-loader/react-dom": "^16.12.0",
     "@nestjs/common": "^6.7.2",
     "@nestjs/core": "^6.7.2",
     "@nestjs/graphql": "^6.5.4",
@@ -62,11 +63,12 @@
     "mobx-utils": "^5.5.3",
     "natural-orderby": "^2.0.3",
     "path-to-regexp": "^6.1.0",
-    "puppeteer": "^2.1.1",
+    "puppeteer": "^1.10.0",
     "query-string": "^6.10.1",
     "react": "^16.12.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.19",
     "react-imask": "^6.0.1",
     "react-jss": "^10.0.3",
     "react-virtualized": "^9.21.2",
@@ -74,8 +76,9 @@
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
     "sqlite3": "^4.1.1",
+    "ts-nameof": "^4.1.0",
     "typeorm": "^0.2.22",
-    "webpack": "^4.41.6"
+    "webpack": "4.35.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
@@ -85,6 +88,9 @@
     "@types/jest": "^24.0.18",
     "@types/node": "^13.7.7",
     "@types/supertest": "^2.0.8",
+    "acorn": "^5.7.3 || ^6.0.5",
+    "acorn-dynamic-import": "4.0.0",
+    "fork-ts-checker-webpack-plugin": "^3.1.0",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "supertest": "^4.0.2",
@@ -93,8 +99,14 @@
     "ts-node": "^8.4.1",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.3",
-    "webpack-cli": "^3.3.11"
+    "typescript": "^3.8.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack-bundle-analyzer": "^3.6.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-node-externals": "^1.7.2"
   },
   "jest": {
     "moduleFileExtensions": [
