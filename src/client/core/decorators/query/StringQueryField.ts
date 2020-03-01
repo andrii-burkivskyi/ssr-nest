@@ -4,8 +4,7 @@ import { StringFilterInput } from '../../../../common/filter';
 import { QueryProperty } from './field/queryField.decorator';
 import { QueryFieldBase } from './field/QueryField.base';
 
-export const isStringQueryField = (constructor: StringQueryField | any): constructor is StringQueryField =>
-    constructor === StringQueryField;
+export const isStringQueryField = (constructor: StringQueryField | any): constructor is StringQueryField => constructor === StringQueryField;
 
 export class StringQueryField extends QueryFieldBase<StringFilterInput> {
     @QueryProperty(ensureString)

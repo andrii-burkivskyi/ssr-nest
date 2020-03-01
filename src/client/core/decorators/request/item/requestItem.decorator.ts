@@ -22,14 +22,14 @@ interface IGqlFieldProps {
 }
 
 export const GqlConnect = (name: string, props: ConnectedQuery): ClassDecorator => (target) => {
-    Reflect.defineMetadata(RIKeys.NAME, name, target.prototype);
-    Reflect.defineMetadata(RIKeys.QUERY, props, target.prototype);
+  Reflect.defineMetadata(RIKeys.NAME, name, target.prototype);
+  Reflect.defineMetadata(RIKeys.QUERY, props, target.prototype);
 };
 
 export const GqlPrimaryField = () => GqlField({ isPrimary: true });
 
 export const GqlField = (props?: IGqlFieldProps): PropertyDecorator => (target, propertyKey) => {
-    pushPropertyKey(RIKeys.KEYS, target, propertyKey);
-    const isPrimary = props?.isPrimary ?? false;
-    Reflect.defineMetadata(RIKeys.IS_PRIMARY, isPrimary, target, propertyKey);
+  pushPropertyKey(RIKeys.KEYS, target, propertyKey);
+  const isPrimary = props?.isPrimary ?? false;
+  Reflect.defineMetadata(RIKeys.IS_PRIMARY, isPrimary, target, propertyKey);
 };

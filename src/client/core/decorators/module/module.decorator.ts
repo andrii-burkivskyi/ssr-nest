@@ -5,7 +5,7 @@ import { AsyncModuleItem, AsyncLazyConstructor } from './module.extractor';
 interface IModuleDecoratorProps {
     view: () => Promise<any>;
     model: () => Promise<any>;
-    guard?: Constructable<Object>;
+    guard?: Constructable<Record<string, any>>;
     imports?: AsyncModuleItem[];
     services?: AsyncLazyConstructor[];
     modules?: AsyncModuleItem[];
@@ -21,10 +21,10 @@ export enum MDKeys {
 }
 
 export const Module = (props: IModuleDecoratorProps): ClassDecorator => (target) => {
-    Reflect.defineMetadata(MDKeys.VIEW, props.view , target.prototype);
-    Reflect.defineMetadata(MDKeys.MODEL, props.model , target.prototype);
-    Reflect.defineMetadata(MDKeys.GUARD, props.guard , target.prototype);
-    Reflect.defineMetadata(MDKeys.IMPORTS, props.imports ?? DEFAULT_ARRAY, target.prototype);
-    Reflect.defineMetadata(MDKeys.SERVICES, props.services ?? DEFAULT_ARRAY, target.prototype);
-    Reflect.defineMetadata(MDKeys.MODULES, props.modules ?? DEFAULT_ARRAY, target.prototype);
+  Reflect.defineMetadata(MDKeys.VIEW, props.view, target.prototype);
+  Reflect.defineMetadata(MDKeys.MODEL, props.model, target.prototype);
+  Reflect.defineMetadata(MDKeys.GUARD, props.guard, target.prototype);
+  Reflect.defineMetadata(MDKeys.IMPORTS, props.imports ?? DEFAULT_ARRAY, target.prototype);
+  Reflect.defineMetadata(MDKeys.SERVICES, props.services ?? DEFAULT_ARRAY, target.prototype);
+  Reflect.defineMetadata(MDKeys.MODULES, props.modules ?? DEFAULT_ARRAY, target.prototype);
 };

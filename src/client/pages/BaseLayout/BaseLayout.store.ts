@@ -4,8 +4,8 @@ import { BaseLayoutModule } from '.';
 
 @Service('BaseLayoutStore')
 export class BaseLayoutStore {
-    constructor(
+  constructor(
         public module: BaseLayoutModule,
         public location: LocationService,
-    ) {}
+  ) {}
 }

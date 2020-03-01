@@ -6,17 +6,17 @@ import { Routes } from '../../../../core/routes';
 
 @Guard('FrontendSidebarNavGuard')
 export class FrontendSidebarNavGuard extends GuardBase {
-    constructor(
+  constructor(
         private location: LocationService,
-    ) { super(); }
+  ) { super(); }
 
     route = {
-        route: Routes.FRONTEND,
-        options: { end: false },
+      route: Routes.FRONTEND,
+      options: { end: false },
     };
 
     @computed get isActive(): boolean {
-        return this.isModuleViewRendered &&
+      return this.isModuleViewRendered &&
             this.location.isValidRoute(this.route);
     }
 }

@@ -10,12 +10,12 @@ import { SidebarNavItem } from '../SidebarNavItem/SidebarNavItem.view';
 
 @observer
 export class FrontendSidebarNavView extends Component<ViewOf<FrontendSidebarNavStore>> {
-    render() {
-        const { model } = this.props;
-        return (
-            <>
-                <SidebarNavItem to={Routes.FRONTEND} params={model.params} svg={Dashboard} exact />
-            </>
-        );
-    }
+  render() {
+    const { model } = this.props;
+    return (
+      <>
+        <SidebarNavItem to={Routes.FRONTEND} params={model.params} svg={Dashboard} exact />
+      </>
+    );
+  }
 }

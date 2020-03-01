@@ -10,7 +10,7 @@ export class EntityDTO {
     @Field()
     name!: string;
 
-    @Field(type => ProjectDTO, { defaultValue: {}})
+    @Field((type) => ProjectDTO, { defaultValue: {} })
     project!: ProjectDTO;
 }
 

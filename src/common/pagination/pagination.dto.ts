@@ -10,7 +10,7 @@ export interface IPaginationDTO<D> {
 
 export const PaginationDTO = <D extends object>(DTO: D) => {
     @ObjectType({ isAbstract: true })
-    abstract class PaginationDTOClass {
+  abstract class PaginationDTOClass {
         @Field(() => [DTO])
         items!: D[];
 

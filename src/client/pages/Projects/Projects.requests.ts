@@ -5,6 +5,6 @@ import { Service } from '../../core/decorators/service/service.decorator';
 @Service('ProjectsRequests')
 export class ProjectsRequests {
     projects = new ProjectsList({
-        query: new ProjectQuery(),
+      query: new ProjectQuery(),
     });
 }

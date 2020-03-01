@@ -1,5 +1,5 @@
 export default {
-    create: `
+  create: `
         mutation CreateProject($input: CreateProjectInput!) {
             data: createProject(input: $input){
                 id
@@ -11,7 +11,7 @@ export default {
             }
         }
     `,
-    update: `
+  update: `
         mutation UpdateProject($input: UpdateProjectInput!) {
             data: updateProject(input: $input){
                 id
@@ -23,12 +23,12 @@ export default {
             }
         }
     `,
-    delete: `
+  delete: `
         mutation DeleteProject($input: DeleteProjectInput!) {
             data: deleteProject(input: $input)
         }
     `,
-    get: `
+  get: `
         query GetProject($id: Int!) {
             data: project(id: $id){
                 id
@@ -40,7 +40,7 @@ export default {
             }
         }
     `,
-    getList: `
+  getList: `
         query GetProjectsList($input: ProjectPaginationInput!){
             data: projects(input: $input){
                 items {

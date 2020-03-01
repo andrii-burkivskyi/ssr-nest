@@ -6,9 +6,9 @@ export class UpdateEntityInput {
     @Field(() => Int)
     id!: number;
 
-    @Field({ nullable: true})
+    @Field({ nullable: true })
     name?: string;
 
-    @Field(() => UpdateProjectInput, { nullable: true})
+    @Field(() => UpdateProjectInput, { nullable: true })
     project?: UpdateProjectInput;
 }

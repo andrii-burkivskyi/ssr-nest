@@ -11,18 +11,18 @@ const fs = require('fs');
 const pathToStorybookStatic = path.join(__dirname, '../..', 'storybook-static');
 
 export const runStoryshotsTest = (suite: string, storyKindRegex: RegExp) => {
-    if (!fs.existsSync(pathToStorybookStatic)) {
-        logger.error(
-            'You are running image snapshots without having the static build of storybook. Please run "yarn run build-storybook" before running tests.'
-        );
-    } else {
-        initStoryshots({
-            suite,
-            storyKindRegex,
-            framework: 'react',
-            test: imageSnapshot({
-                storybookUrl: `file://${pathToStorybookStatic}`
-            }),
-        });
-    }
-}
+  if (!fs.existsSync(pathToStorybookStatic)) {
+    logger.error(
+      'You are running image snapshots without having the static build of storybook. Please run "yarn run build-storybook" before running tests.',
+    );
+  } else {
+    initStoryshots({
+      suite,
+      storyKindRegex,
+      framework: 'react',
+      test: imageSnapshot({
+        storybookUrl: `file://${pathToStorybookStatic}`,
+      }),
+    });
+  }
+};

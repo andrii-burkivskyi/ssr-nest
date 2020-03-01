@@ -1,4 +1,4 @@
-import {observable} from 'mobx';
+import { observable } from 'mobx';
 
 import { RequestItemBase } from '../../core/decorators/request/item/RequestItem.base';
 import { RequestListBase } from '../../core/decorators/request/list/RequestList.base';

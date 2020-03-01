@@ -19,34 +19,34 @@ interface ComponentProps {
 
 @observer
 class Link extends React.Component<ComponentProps> {
-    location: LocationService = ModuleBase.services.get(LocationService);
+  render() {
+    return (
+      <a
+        className={this.className}
+        style={this.props.style}
+        href={buildUrl(this.props.to, this.props.params)}
+        onClick={this.onClick}
+        data-tip={this.props['data-tip']}
+        data-for={this.props['data-for']}
+      >
+        {this.props.children}
+      </a>
+    );
+  }
 
-    @computed get className() {
-        const { to, exact = false } = this.props;
-        const isActive = this.location.isValidRoute({ route: to, options: { end: exact }});
-        return `${this.props.className}${isActive ? ' active' : ''}`;
-    }
+  location: LocationService = ModuleBase.services.get(LocationService);
 
-    @action onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault();
-        const { to, params } = this.props;
-        this.location.pushWithParams(to, params);
-    }
+  @computed get className() {
+    const { to, exact = false } = this.props;
+    const isActive = this.location.isValidRoute({ route: to, options: { end: exact } });
+    return `${this.props.className}${isActive ? ' active' : ''}`;
+  }
 
-    render() {
-        return (
-            <a
-                className={this.className}
-                style={this.props.style}
-                href={buildUrl(this.props.to, this.props.params)}
-                onClick={this.onClick}
-                data-tip={this.props['data-tip']}
-                data-for={this.props['data-for']}
-            >
-                {this.props.children}
-            </a>
-        );
-    }
+  @action onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    const { to, params } = this.props;
+    this.location.pushWithParams(to, params);
+  }
 }
 
 export default Link;

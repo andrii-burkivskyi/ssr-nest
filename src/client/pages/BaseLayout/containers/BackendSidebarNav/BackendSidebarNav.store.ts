@@ -7,12 +7,11 @@ import { Service } from '../../../../core/decorators/service/service.decorator';
 
 @Service('BackendSidebarNavStore')
 export class BackendSidebarNavStore {
-    constructor(
+  constructor(
         public location: LocationService,
-    ) {}
+  ) {}
 
     @computed get params(): CommonMap {
-        return this.location.routePrams(Routes.PROJECT);
-    }
-
+    return this.location.routePrams(Routes.PROJECT);
+  }
 }

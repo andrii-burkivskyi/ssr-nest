@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity, Column, PrimaryGeneratedColumn, OneToMany,
+} from 'typeorm';
 import { EntityEntity } from '../entities/entities.entity';
 
 @Entity()
@@ -15,6 +17,6 @@ export class ProjectEntity {
     @Column()
     url!: string;
 
-    @OneToMany(type => EntityEntity, entity => entity.project)
+    @OneToMany((type) => EntityEntity, (entity) => entity.project)
     entities!: EntityEntity[];
 }

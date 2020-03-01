@@ -16,8 +16,8 @@ interface CommonMap {
 }
 
 interface ViewOf<T> {
-    classes?: any,
-    style?: React.CSSProperties,
+    classes?: any;
+    style?: React.CSSProperties;
     model: T;
 }
 interface ModuleOf<T> {
@@ -45,7 +45,7 @@ type PartialExceptOne<T, K extends keyof T> = RequireOne<Partial<T>, K>;
 type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> & U[keyof U];
 
 interface SVGProps {
-    className: string
+    className: string;
 }
 
 declare module '*.scss' {
@@ -63,8 +63,7 @@ declare module '*.gql' {
     export default content;
 }
 
-declare module "*.json" {
+declare module '*.json' {
     const value: any;
     export default value;
 }
-

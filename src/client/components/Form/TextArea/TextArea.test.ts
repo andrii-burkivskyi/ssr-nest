@@ -1,3 +1,3 @@
-import { runStoryshotsTest } from "../../../utils/screenshotMatching";
+import { runStoryshotsTest } from '../../../utils/screenshotMatching';
 
-runStoryshotsTest("TextArea", /TextArea/);
+runStoryshotsTest('TextArea', /TextArea/);

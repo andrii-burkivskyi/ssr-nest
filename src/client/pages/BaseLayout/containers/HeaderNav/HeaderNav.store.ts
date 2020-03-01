@@ -8,15 +8,15 @@ import { HeaderNavI18n } from './HeaderNav.i18n';
 
 @Service('HeaderNavStore')
 export class HeaderNavStore {
-    constructor(
+  constructor(
         public location: LocationService,
-    ) {}
+  ) {}
 
     @computed get params(): CommonMap {
-        return this.location.routePrams(Routes.PROJECT);
-    }
+    return this.location.routePrams(Routes.PROJECT);
+  }
 
     @computed get i18n() {
-        return HeaderNavI18n.i18n;
+      return HeaderNavI18n.i18n;
     }
 }

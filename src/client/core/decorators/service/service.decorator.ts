@@ -6,7 +6,7 @@ interface IServiceOptions {
 }
 
 const defaultServiceOptions: IServiceOptions = {
-    isGlobal: false,
+  isGlobal: false,
 };
 
 export enum SKeys {
@@ -14,8 +14,7 @@ export enum SKeys {
     IS_GLOBAL = 'service_decorator:is_global',
 }
 
-export const Service = (name: string, options: IServiceOptions = defaultServiceOptions): ClassDecorator =>
-    (target) => {
-        Reflect.defineMetadata(SKeys.NAME, name , target.prototype);
-        Reflect.defineMetadata(SKeys.IS_GLOBAL, options.isGlobal , target.prototype);
-    };
+export const Service = (name: string, options: IServiceOptions = defaultServiceOptions): ClassDecorator => (target) => {
+  Reflect.defineMetadata(SKeys.NAME, name, target.prototype);
+  Reflect.defineMetadata(SKeys.IS_GLOBAL, options.isGlobal, target.prototype);
+};

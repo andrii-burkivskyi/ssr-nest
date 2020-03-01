@@ -5,8 +5,8 @@ import { HeaderNav } from './HeaderNav.imports';
 import { HeaderNavGuard } from './HeaderNav.guard';
 
 @Module({
-    guard: HeaderNavGuard,
-    view: HeaderNav.View,
-    model: HeaderNav.Store,
+  guard: HeaderNavGuard,
+  view: HeaderNav.View,
+  model: HeaderNav.Store,
 })
 export class HeaderNavModule extends ModuleBase {}

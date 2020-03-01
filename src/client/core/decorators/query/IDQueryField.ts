@@ -4,8 +4,7 @@ import { IdFilterInput } from '../../../../common/filter';
 import { QueryProperty } from './field/queryField.decorator';
 import { QueryFieldBase } from './field/QueryField.base';
 
-export const isIDQueryField = (constructor: IDQueryField | any): constructor is IDQueryField =>
-    constructor === IDQueryField;
+export const isIDQueryField = (constructor: IDQueryField | any): constructor is IDQueryField => constructor === IDQueryField;
 
 export class IDQueryField extends QueryFieldBase<IdFilterInput> {
     @QueryProperty(ensureNumber)

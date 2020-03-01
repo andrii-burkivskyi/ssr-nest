@@ -9,11 +9,11 @@ export enum RLIKeys {
 }
 
 export const GqlListConnect = (
-    name: string,
-    gql: { getList: string },
-    ItemConstructor: Constructable<Object>,
+  name: string,
+  gql: { getList: string },
+  ItemConstructor: Constructable<Record<string, any>>,
 ): ClassDecorator => (target) => {
-    Reflect.defineMetadata(RLIKeys.NAME, name, target.prototype);
-    Reflect.defineMetadata(RLIKeys.QUERY, gql, target.prototype);
-    Reflect.defineMetadata(RLIKeys.ITEM_CONSTRUCTOR, ItemConstructor, target.prototype);
+  Reflect.defineMetadata(RLIKeys.NAME, name, target.prototype);
+  Reflect.defineMetadata(RLIKeys.QUERY, gql, target.prototype);
+  Reflect.defineMetadata(RLIKeys.ITEM_CONSTRUCTOR, ItemConstructor, target.prototype);
 };

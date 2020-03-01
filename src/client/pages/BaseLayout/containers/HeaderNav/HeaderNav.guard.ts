@@ -6,16 +6,16 @@ import { Routes } from '../../../../core/routes';
 
 @Guard('HeaderNavGuard')
 export class HeaderNavGuard extends GuardBase {
-    constructor(
+  constructor(
         private location: LocationService,
-    ) { super(); }
+  ) { super(); }
 
     route = {
-        route: Routes.PROJECT,
-        options: { end: false },
+      route: Routes.PROJECT,
+      options: { end: false },
     };
 
     @computed get isActive(): boolean {
-        return this.isModuleViewRendered && this.location.isValidRoute(this.route);
+      return this.isModuleViewRendered && this.location.isValidRoute(this.route);
     }
 }

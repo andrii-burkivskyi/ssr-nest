@@ -5,8 +5,8 @@ import { BackendSidebarNav } from './BackendSidebarNav.imports';
 import { BackendSidebarNavGuard } from './BackendSidebarNav.guard';
 
 @Module({
-    guard: BackendSidebarNavGuard,
-    view: BackendSidebarNav.View,
-    model: BackendSidebarNav.Store,
+  guard: BackendSidebarNavGuard,
+  view: BackendSidebarNav.View,
+  model: BackendSidebarNav.Store,
 })
 export class BackendSidebarNavModule extends ModuleBase {}

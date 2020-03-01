@@ -5,7 +5,7 @@ export class UpdateProjectInput {
     @Field(() => Int)
     id!: number;
 
-    @Field({ nullable: true})
+    @Field({ nullable: true })
     name?: string;
 
     @Field({ nullable: true })

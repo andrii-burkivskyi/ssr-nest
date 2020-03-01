@@ -1,5 +1,4 @@
 
-import { runStoryshotsTest } from "../../../utils/screenshotMatching";
+import { runStoryshotsTest } from '../../../utils/screenshotMatching';
 
-runStoryshotsTest("Select", /Select/);
-
+runStoryshotsTest('Select', /Select/);

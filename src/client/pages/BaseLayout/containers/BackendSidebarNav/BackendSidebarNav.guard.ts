@@ -7,17 +7,17 @@ import { Routes } from '../../../../core/routes';
 
 @Guard('BackendSidebarNavGuard')
 export class BackendSidebarNavGuard extends GuardBase {
-    constructor(
+  constructor(
         private location: LocationService,
-    ) { super(); }
+  ) { super(); }
 
     route = {
-        route: Routes.BACKEND,
-        options: { end: false },
+      route: Routes.BACKEND,
+      options: { end: false },
     };
 
     @computed get isActive(): boolean {
-        return this.isModuleViewRendered &&
+      return this.isModuleViewRendered &&
             this.location.isValidRoute(this.route);
     }
 }

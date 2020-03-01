@@ -1,4 +1,6 @@
-import { observable, action, set, computed } from 'mobx';
+import {
+  observable, action, set, computed,
+} from 'mobx';
 import axios, { CancelTokenSource, AxiosRequestConfig } from 'axios';
 
 enum RequestMethod {
@@ -22,48 +24,53 @@ interface InitProps<D, V> {
 
 export default class Request<D, V> {
     static method = RequestMethod;
+
     static state = RequestState;
 
     constructor(props: InitProps<D, V>) {
-        set(this, props);
+      set(this, props);
     }
 
-    @observable private endpoint: string = 'http://localhost:3000/graphql';
+    @observable private endpoint = 'http://localhost:3000/graphql';
+
     @observable private method: AxiosRequestConfig['method'] = Request.method.POST;
+
     @observable private cancelTokenSource: CancelTokenSource = axios.CancelToken.source();
+
     @observable private state: RequestState = Request.state.INIT;
 
     @observable private headers: AxiosRequestConfig['headers'];
+
     @observable private query!: string;
 
     @computed get isLoading(): boolean { return this.state === Request.state.LOADING; }
 
     @action send: (variables: V) => Promise<D> = async (variables) => {
-        this.state = Request.state.LOADING;
-        try {
-            const response = await axios({
-                method: this.method,
-                url: this.endpoint,
-                headers: this.headers,
-                data: {
-                    query: this.query,
-                    variables,
-                },
-                cancelToken: this.cancelTokenSource.token,
-            });
-            this.state = Request.state.LOADED;
-            if (response?.data?.errors) {
-                throw response.data.errors;
-            }
-            return (response?.data?.data?.data ? response.data.data.data : response?.data?.data) ;
-        } catch (error) {
-            if (axios.isCancel(error)) {
-                this.state = Request.state.CANCELED;
-                throw new Error('Request is canceled');
-            } else {
-                this.state = Request.state.ERROR;
-                throw error;
-            }
+      this.state = Request.state.LOADING;
+      try {
+        const response = await axios({
+          method: this.method,
+          url: this.endpoint,
+          headers: this.headers,
+          data: {
+            query: this.query,
+            variables,
+          },
+          cancelToken: this.cancelTokenSource.token,
+        });
+        this.state = Request.state.LOADED;
+        if (response?.data?.errors) {
+          throw response.data.errors;
         }
+        return (response?.data?.data?.data ? response.data.data.data : response?.data?.data);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+          this.state = Request.state.CANCELED;
+          throw new Error('Request is canceled');
+        } else {
+          this.state = Request.state.ERROR;
+          throw error;
+        }
+      }
     }
 }

@@ -9,13 +9,13 @@ export enum QFDKeys {
 }
 
 export const QueryField = <T>(FieldConstructor: Constructable<T>): PropertyDecorator => (target, propertyKey) => {
-    pushPropertyKey(QFDKeys.QUERY_FIELD_KEYS, target, propertyKey);
-    Reflect.defineMetadata(QFDKeys.QUERY_FIELD_IS_NESTED, false, target, propertyKey);
-    Reflect.defineMetadata(QFDKeys.QUERY_FIELD_CONSTRUCTOR, FieldConstructor, target, propertyKey);
+  pushPropertyKey(QFDKeys.QUERY_FIELD_KEYS, target, propertyKey);
+  Reflect.defineMetadata(QFDKeys.QUERY_FIELD_IS_NESTED, false, target, propertyKey);
+  Reflect.defineMetadata(QFDKeys.QUERY_FIELD_CONSTRUCTOR, FieldConstructor, target, propertyKey);
 };
 
 export const QueryNestedField = <T>(NestedFieldConstructor: Constructable<T>): PropertyDecorator => (target, propertyKey) => {
-    pushPropertyKey(QFDKeys.QUERY_FIELD_KEYS, target, propertyKey);
-    Reflect.defineMetadata(QFDKeys.QUERY_FIELD_IS_NESTED, true, target, propertyKey);
-    Reflect.defineMetadata(QFDKeys.QUERY_FIELD_CONSTRUCTOR, NestedFieldConstructor, target, propertyKey);
+  pushPropertyKey(QFDKeys.QUERY_FIELD_KEYS, target, propertyKey);
+  Reflect.defineMetadata(QFDKeys.QUERY_FIELD_IS_NESTED, true, target, propertyKey);
+  Reflect.defineMetadata(QFDKeys.QUERY_FIELD_CONSTRUCTOR, NestedFieldConstructor, target, propertyKey);
 };

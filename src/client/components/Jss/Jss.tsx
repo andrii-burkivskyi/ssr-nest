@@ -6,11 +6,11 @@ interface ComponentProps {
     children: (classes: Record<string, string>) => React.ReactElement;
 }
 
-export const Jss: React.FunctionComponent<ComponentProps> = ({styles, children}) => {
-    const classes = createUseStyles(styles)();
-    if (typeof children === 'function') {
-        return children(classes);
-    }
+export const Jss: React.FunctionComponent<ComponentProps> = ({ styles, children }) => {
+  const classes = createUseStyles(styles)();
+  if (typeof children === 'function') {
+    return children(classes);
+  }
 
-    return null;
+  return null;
 };

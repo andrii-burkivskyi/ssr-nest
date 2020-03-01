@@ -1,4 +1,6 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver, Query, Mutation, Args,
+} from '@nestjs/graphql';
 import { Int, Arg } from 'type-graphql';
 import { ProjectsService } from './projects.service';
 import { ProjectDTO, ProjectPaginationDTO } from './projects.dto';
@@ -11,40 +13,40 @@ import { IPaginationInput } from '../../common/pagination/pagination.input';
 
 @Resolver(() => ProjectDTO)
 export class ProjectsResolver {
-    constructor(
+  constructor(
         private readonly projectsService: ProjectsService,
         private readonly entitiesService: EntitiesService,
-    ) { }
+  ) { }
 
     @Query(() => ProjectDTO, { nullable: true })
-    async project(@Args({ name: 'id', type: () => Int }) id: number) {
-        return await this.projectsService.findById(id);
-    }
+  async project(@Args({ name: 'id', type: () => Int }) id: number) {
+    return await this.projectsService.findById(id);
+  }
 
     @Query(() => ProjectPaginationDTO)
     async projects(
         @Args({ name: 'input', type: () => ProjectPaginationInput, defaultValue: {} })
-        input: IPaginationInput<ProjectFilterInput>,
+          input: IPaginationInput<ProjectFilterInput>,
     ) {
-        return await this.projectsService.findAll(input);
+      return await this.projectsService.findAll(input);
     }
 
     @Mutation(() => ProjectDTO)
     async createProject(@Args({ name: 'input', type: () => CreateProjectInput }) input: CreateProjectInput) {
-        return await this.projectsService.create(input);
+      return await this.projectsService.create(input);
     }
 
     @Mutation(() => ProjectDTO)
     async updateProject(@Args({ name: 'input', type: () => UpdateProjectInput }) input: UpdateProjectInput) {
-        return await this.projectsService.update(input);
+      return await this.projectsService.update(input);
     }
 
     @Mutation(() => Int)
-    async deleteProject(@Args({ name: 'input', type: () => DeleteProjectInput}) input: DeleteProjectInput) {
-        const project = await this.projectsService.findById(input.id);
-        if (project && project.entities.length > 0) {
-            await this.entitiesService.deleteList(project.entities);
-        }
-        return await this.projectsService.delete(input);
+    async deleteProject(@Args({ name: 'input', type: () => DeleteProjectInput }) input: DeleteProjectInput) {
+      const project = await this.projectsService.findById(input.id);
+      if (project && project.entities.length > 0) {
+        await this.entitiesService.deleteList(project.entities);
+      }
+      return await this.projectsService.delete(input);
     }
 }

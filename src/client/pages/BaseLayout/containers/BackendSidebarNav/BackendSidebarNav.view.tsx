@@ -12,13 +12,13 @@ import { BackendSidebarNavStore } from './BackendSidebarNav.store';
 
 @observer
 export class BackendSidebarNavView extends Component<ViewOf<BackendSidebarNavStore>> {
-    render() {
-        const { model } = this.props;
-        return (
-            <>
-                <SidebarNavItem to={Routes.BACKEND} params={model.params} svg={Dashboard} exact />
-                <SidebarNavItem to={Routes.BACKEND_ENTITY} params={model.params} svg={Entity} exact />
-            </>
-        );
-    }
+  render() {
+    const { model } = this.props;
+    return (
+      <>
+        <SidebarNavItem to={Routes.BACKEND} params={model.params} svg={Dashboard} exact />
+        <SidebarNavItem to={Routes.BACKEND_ENTITY} params={model.params} svg={Entity} exact />
+      </>
+    );
+  }
 }

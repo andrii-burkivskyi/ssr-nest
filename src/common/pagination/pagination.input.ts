@@ -9,13 +9,13 @@ export interface IPaginationInput<T> {
 export const PaginationInput = <TItem extends object>(TItemFilter: TItem) => {
   @InputType({ isAbstract: true })
   abstract class PaginationInputClass {
-    @Field(type => TItemFilter, { nullable: true, defaultValue: {} })
+    @Field((type) => TItemFilter, { nullable: true, defaultValue: {} })
     filter!: TItem;
 
-    @Field(type => Int, { nullable: true, defaultValue: 0 })
+    @Field((type) => Int, { nullable: true, defaultValue: 0 })
     page!: number;
 
-    @Field(type => Int, { nullable: true, defaultValue: 20 })
+    @Field((type) => Int, { nullable: true, defaultValue: 20 })
     take!: number;
   }
 

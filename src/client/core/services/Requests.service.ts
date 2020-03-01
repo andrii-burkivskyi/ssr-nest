@@ -12,7 +12,7 @@ export class RequestsService {
     requests: Array<Promise<any>> = [];
 
     registerRequest = (request: Promise<any>) => {
-        this.requests.push(request);
+      this.requests.push(request);
     }
 
     initRequestWait = Promise.all(this.requests);
