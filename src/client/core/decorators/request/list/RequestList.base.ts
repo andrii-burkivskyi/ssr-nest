@@ -1,17 +1,17 @@
 
-import { observable, action, IObservableArray } from "mobx";
-import { DEFAULT_ARRAY, DEFAULT_OBJECT } from "../../../../utils/constants";
+import { observable, action, IObservableArray } from 'mobx';
+import { DEFAULT_ARRAY, DEFAULT_OBJECT } from '../../../../utils/constants';
 
-import { QueryBase } from "../../../../core/decorators/query/query/Query.base";
+import { QueryBase } from '../../../../core/decorators/query/query/Query.base';
 
-import { IPaginationDTO } from "../../../../../common/pagination/pagination.dto";
-import { IPaginationInput } from "../../../../../common/pagination/pagination.input";
+import { IPaginationDTO } from '../../../../../common/pagination/pagination.dto';
+import { IPaginationInput } from '../../../../../common/pagination/pagination.input';
 
-import { RequestListExtractor } from "./requestList.extractor";
-import { RequestItemBase } from "../item/RequestItem.base";
-import Request from "../request";
-import { ModuleBase } from "../../module/Module.base";
-import { RequestsService } from "../../../services/Requests.service";
+import { RequestListExtractor } from './requestList.extractor';
+import { RequestItemBase } from '../item/RequestItem.base';
+import Request from '../request';
+import { ModuleBase } from '../../module/Module.base';
+import { RequestsService } from '../../../services/Requests.service';
 
 interface InitProps<
     ItemClass extends RequestItemBase<DTO, ID> = any,
@@ -20,8 +20,8 @@ interface InitProps<
     Query extends QueryBase<any> = any,
     FilterInput = any
 > {
-    query?: RequestListBase<ItemClass, DTO, ID, Query, FilterInput >["query"];
-    isLocalUpdated?: RequestListBase<ItemClass, DTO, ID, Query, FilterInput>["isLocalUpdated"];
+    query?: RequestListBase<ItemClass, DTO, ID, Query, FilterInput >['query'];
+    isLocalUpdated?: RequestListBase<ItemClass, DTO, ID, Query, FilterInput>['isLocalUpdated'];
 }
 
 export class RequestListBase<
@@ -35,15 +35,15 @@ export class RequestListBase<
         const gql = RequestListExtractor(this).query;
         this.ItemConstructor = RequestListExtractor(this).ItemConstructor;
         this.getRequest = new Request<IPaginationDTO<Partial<DTO> & ID>, InputOf<IPaginationInput<FilterInput>>>({
-            query: gql.getList
-        })
+            query: gql.getList,
+        });
         if (props) {
             this.isLocalUpdated = props.isLocalUpdated ?? this.isLocalUpdated;
             this.query = props.query;
             this.query?.subscribe((input) => this.get({
                 ...input,
                 page: input.page ?? this.page,
-                take: input.take ?? this.take 
+                take: input.take ?? this.take,
             }));
         }
 
@@ -65,13 +65,11 @@ export class RequestListBase<
         this.finishRequestLoading = resolve;
     });
 
-
     @action private onDelete = async (deletedItem: ItemClass) => {
         if (this.isLocalUpdated) {
             this.data.replace(this.data.filter((item) => item !== deletedItem ));
             this.totalItems = this.totalItems - 1;
-        }
-        else {
+        } else {
             const filter = this.query?.getPagination() ?? DEFAULT_OBJECT;
             await this.get(filter);
         }
@@ -83,8 +81,7 @@ export class RequestListBase<
                 this.data.unshift(updatedItem);
                 this.totalItems = this.totalItems + 1;
             }
-        }
-        else {
+        } else {
             const filter = this.query?.getPagination() ?? DEFAULT_OBJECT;
             await this.get(filter);
         }
@@ -98,7 +95,7 @@ export class RequestListBase<
             const newItems = data.items.map((item) => new this.ItemConstructor({
                 ...item,
                 onDelete: this.onUpdate,
-                onUpdate: this.onUpdate
+                onUpdate: this.onUpdate,
             }));
             this.data.replace(newItems);
             this.page = data.page;
@@ -106,8 +103,7 @@ export class RequestListBase<
             this.totalItems = data.totalItems;
 
             this.finishRequestLoading();
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error.toJSON?.());
             this.finishRequestLoading();
         }
@@ -118,12 +114,11 @@ export class RequestListBase<
             const item = new this.ItemConstructor();
             item.updateListRegistration({
                 onDelete: this.onDelete,
-                onUpdate: this.onUpdate
-            })
+                onUpdate: this.onUpdate,
+            });
             await item.create(data);
 
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error);
         }
     }
@@ -133,12 +128,11 @@ export class RequestListBase<
             const item = new this.ItemConstructor();
             item.updateListRegistration({
                 onDelete: this.onDelete,
-                onUpdate: this.onUpdate
-            })
+                onUpdate: this.onUpdate,
+            });
 
             return item;
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error);
         }
 

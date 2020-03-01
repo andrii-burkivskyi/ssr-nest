@@ -1,13 +1,12 @@
 
-import React, { Component } from "react";
-import { observer } from "mobx-react";
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
 
-import Dashboard from "../../../../components/icons/Dashboard";
-import { Routes } from "../../../../core/routes";
+import Dashboard from '../../../../components/icons/Dashboard';
+import { Routes } from '../../../../core/routes';
 
-import { FrontendSidebarNavStore } from "./FrontendSidebarNav.store";
-import { SidebarNavItem } from "../SidebarNavItem/SidebarNavItem.view";
-
+import { FrontendSidebarNavStore } from './FrontendSidebarNav.store';
+import { SidebarNavItem } from '../SidebarNavItem/SidebarNavItem.view';
 
 @observer
 export class FrontendSidebarNavView extends Component<ViewOf<FrontendSidebarNavStore>> {

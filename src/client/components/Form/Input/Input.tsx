@@ -1,17 +1,17 @@
-import React, {Component} from "react";
-import { observer } from "mobx-react";
-import { toJS } from "mobx";
-import { IMaskInput } from "react-imask";
+import React, {Component} from 'react';
+import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
+import { IMaskInput } from 'react-imask';
 
 // import Icon from "../../Icon/Icon";
-import FormItem from "../../Form/FormItem/FormItem";
+import FormItem from '../../Form/FormItem/FormItem';
 
-import bem from "../../../utils/bem";
-import { t } from "../../../utils/i18n/translations";
+import bem from '../../../utils/bem';
+import { t } from '../../../utils/i18n/translations';
 
-import arrow from "../../../icons/arrow.svg";
+import arrow from '../../../icons/arrow.svg';
 
-import InputStore from "./Input.store";
+import InputStore from './Input.store';
 // import styles from "./form_input.scss";
 const styles = {} as any;
 
@@ -23,15 +23,15 @@ export default class Input extends Component<ViewOf<InputStore>> {
         isDisabled: this.props.model.isDisabled,
         isError: this.props.model.shouldDisplayError,
         isFocused: this.props.model.shouldBeFocused,
-        isNumber: this.props.model.type === InputStore.type.NUMBER
-    });
+        isNumber: this.props.model.type === InputStore.type.NUMBER,
+    })
 
     render() {
         return (
             <FormItem model={this.props.model}>
                 {this.renderField()}
             </FormItem>
-        )
+        );
     }
 
     renderField = () => (
@@ -59,7 +59,7 @@ export default class Input extends Component<ViewOf<InputStore>> {
             />
             {this.renderArrows()}
         </div>
-    );
+    )
 
     renderArrows = () => this.props.model.type === InputStore.type.NUMBER && (
         <div className={this.getClassName(styles.number_arrows)}>
@@ -81,5 +81,5 @@ export default class Input extends Component<ViewOf<InputStore>> {
                 {/* <Icon className={this.getClassName(styles.number_arrow_icon_down)} svg={arrow} /> */}
             </button>
         </div>
-    );
+    )
 }

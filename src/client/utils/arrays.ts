@@ -4,4 +4,4 @@ export const lastItemOf = <T>(arr: T[]): Nullable<T> => {
     }
 
     return null;
-}
+};

@@ -1,6 +1,6 @@
-import { DEFAULT_OBJECT } from "../../../../utils/constants";
-import { clearUndefinedValues } from "../../../../utils/object";
-import { QueryFieldExtractor } from "./queryField.extractor";
+import { DEFAULT_OBJECT } from '../../../../utils/constants';
+import { clearUndefinedValues } from '../../../../utils/object';
+import { QueryFieldExtractor } from './queryField.extractor';
 
 export class QueryFieldBase<F> {
     constructor() {
@@ -9,10 +9,10 @@ export class QueryFieldBase<F> {
             this[key] = (value: any) => {
                 this.newFilter = {
                     ...this.newFilter,
-                    [key]: QueryFieldExtractor(this).conformer(key)(value)
-                }
-            }
-        })
+                    [key]: QueryFieldExtractor(this).conformer(key)(value),
+                };
+            };
+        });
     }
 
     keys: string[] = [];
@@ -20,11 +20,10 @@ export class QueryFieldBase<F> {
     private filter: F = DEFAULT_OBJECT as F;
     private newFilter: F = DEFAULT_OBJECT as F;
 
-
     setFilter = (filter: F) => {
         this.filter = this.keys.reduce((acc, key) => ( {
             ...acc,
-            [key]: QueryFieldExtractor(this).conformer(key)(filter[key])
+            [key]: QueryFieldExtractor(this).conformer(key)(filter[key]),
         }), {}) as F;
         this.newFilter = DEFAULT_OBJECT as F;
     }
@@ -40,10 +39,9 @@ export class QueryFieldBase<F> {
         if (this.shouldUpdate || this.newFilter === DEFAULT_OBJECT) {
             filter = clearUndefinedValues({
                 ...this.filter,
-                ...this.newFilter
-            })
-        }
-        else {
+                ...this.newFilter,
+            });
+        } else {
             filter = clearUndefinedValues(this.newFilter);
         }
 

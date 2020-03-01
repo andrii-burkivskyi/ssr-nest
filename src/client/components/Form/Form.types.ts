@@ -1,4 +1,4 @@
-import { ObservableString } from "../../utils/types";
+import { ObservableString } from '../../utils/types';
 
 export interface FormIntegrationProps {
     formValue: any;
@@ -22,15 +22,14 @@ export interface FormItemModel {
     shouldDisplayError: boolean;
 }
 
-
 export enum TabIndex {
     Disabled = -1,
     NotImportant = 1,
     Regular = 10,
     Important = 100,
-    VeryImportant = 1000
+    VeryImportant = 1000,
 }
 
 export enum FormTheme {
-    DEFAULT = "default"
+    DEFAULT = 'default',
 }

@@ -1,7 +1,7 @@
 
-import { observable, set, action, computed } from "mobx";
+import { observable, set, action, computed } from 'mobx';
 // import key from "keymaster";
-import { DEFAULT_STRING, DEFAULT_FUNCTION, IS_NODE } from "../../utils/constants";
+import { DEFAULT_STRING, DEFAULT_FUNCTION, IS_NODE } from '../../utils/constants';
 
 // key.filter = (event: FilterEvent) => {
 //     const { tagName = DEFAULT_STRING } = (event.target || event.srcElement || {});
@@ -13,16 +13,16 @@ import { DEFAULT_STRING, DEFAULT_FUNCTION, IS_NODE } from "../../utils/constants
 // }
 
 enum KeybindingScope {
-    ALL = "all",
-    LIST_FOCUS = "list.focus",
-    LIST_OPEN = "list.open",
+    ALL = 'all',
+    LIST_FOCUS = 'list.focus',
+    LIST_OPEN = 'list.open',
 }
 
 interface InitProps {
-    name: KeybindingStore["name"];
-    key: KeybindingStore["key"];
-    action?: KeybindingStore["action"];
-    scope?: KeybindingStore["scope"];
+    name: KeybindingStore['name'];
+    key: KeybindingStore['key'];
+    action?: KeybindingStore['action'];
+    scope?: KeybindingStore['scope'];
 }
 
 export default class KeybindingStore {
@@ -32,7 +32,7 @@ export default class KeybindingStore {
         if (props && !IS_NODE()) {
             set(this, props);
             this.defaultProps = { ...this.defaultProps, ...props };
-            this.setAction(this.action)
+            this.setAction(this.action);
         }
     }
 
@@ -40,7 +40,7 @@ export default class KeybindingStore {
         name: DEFAULT_STRING,
         key: DEFAULT_STRING,
         scope: KeybindingScope.ALL,
-        action: DEFAULT_FUNCTION
+        action: DEFAULT_FUNCTION,
     };
     @observable name: string = DEFAULT_STRING;
     @observable key: string = DEFAULT_STRING;

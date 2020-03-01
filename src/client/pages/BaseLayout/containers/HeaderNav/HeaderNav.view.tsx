@@ -1,48 +1,48 @@
-import React, { Component } from "react";
-import { observer } from "mobx-react";
-import withStyles, { Styles } from "react-jss";
+import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+import withStyles, { Styles } from 'react-jss';
 
-import Link from "../../../../components/Link/Link";
+import Link from '../../../../components/Link/Link';
 
-import Frontend from "../../../../components/icons/Frontend";
-import Backend from "../../../../components/icons/Backend";
+import Frontend from '../../../../components/icons/Frontend';
+import Backend from '../../../../components/icons/Backend';
 
-import { t } from "../../../../utils/i18n/translations";
-import { Routes } from "../../../../core/routes";
+import { t } from '../../../../utils/i18n/translations';
+import { Routes } from '../../../../core/routes';
 
-import { HeaderNavStore } from "./HeaderNav.store";
+import { HeaderNavStore } from './HeaderNav.store';
 
 const styles: Styles = {
     container: {
-        display: "flex",
-        padding: "0 10px"
+        display: 'flex',
+        padding: '0 10px',
     },
     menu_item: {
-        display: "flex",
-        alignItems: "center"
+        display: 'flex',
+        alignItems: 'center',
     },
     menu_item_icon: {
-        margin: "0 10px",
-        width: "36px",
-        height: "36px",
-        "& .background": {
-            fill: "#E3E4DB",
+        'margin': '0 10px',
+        'width': '36px',
+        'height': '36px',
+        '& .background': {
+            fill: '#E3E4DB',
         },
-        "& .icon": {
-            fill: "#202c39"
-        }
+        '& .icon': {
+            fill: '#202c39',
+        },
     },
     menu_item_text: {
-        fontFamily: "'Open Sans', sans-serif",
-        color: "#E3E4DB",
-        ".active &": {
-            boxShadow: "0 2px 0 0 #E3E4DB"
+        'fontFamily': '\'Open Sans\', sans-serif',
+        'color': '#E3E4DB',
+        '.active &': {
+            boxShadow: '0 2px 0 0 #E3E4DB',
         },
-        "$menu_item:hover &": {
-            boxShadow: "0 2px 0 0 #E3E4DB"
-        }
-    }
-}
+        '$menu_item:hover &': {
+            boxShadow: '0 2px 0 0 #E3E4DB',
+        },
+    },
+};
 
 @observer
 export class HeaderNavViewBase extends Component<ViewOf<HeaderNavStore>> {

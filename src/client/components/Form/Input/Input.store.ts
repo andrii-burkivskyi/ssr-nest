@@ -1,58 +1,58 @@
-import * as React from "react";
-import { observable, action, computed, set, IObservableValue } from "mobx";
+import * as React from 'react';
+import { observable, action, computed, set, IObservableValue } from 'mobx';
 
-import { validate, ValidationType } from "../../../utils/validation";
-import { t } from "../../../utils/i18n/translations";
-import { KeyCode } from "../../../utils/keyboard";
-import { ObservableString } from "../../../utils/types";
+import { validate, ValidationType } from '../../../utils/validation';
+import { t } from '../../../utils/i18n/translations';
+import { KeyCode } from '../../../utils/keyboard';
+import { ObservableString } from '../../../utils/types';
 
-import { TabIndex, FormTheme, FormIntegrationProps, FormItemModel } from "../../../components/Form/Form.types";
+import { TabIndex, FormTheme, FormIntegrationProps, FormItemModel } from '../../../components/Form/Form.types';
 
 enum InputType {
-    TEXT = "text",
-    EMAIL = "email",
-    PASSWORD = "password",
-    SEARCH = "search",
-    URL = "url",
-    NUMBER = "number"
+    TEXT = 'text',
+    EMAIL = 'email',
+    PASSWORD = 'password',
+    SEARCH = 'search',
+    URL = 'url',
+    NUMBER = 'number',
 }
 
 interface InitNumberProps {
     type: InputType.NUMBER;
-    theme?: InputStore["theme"];
-    defaultValue?: InputStore["defaultValue"];
-    label?: InputStore["label"];
-    placeholder?: InputStore["placeholder"];
-    validations?: InputStore["validations"];
-    mask?: InputStore["mask"];
-    shouldDisplayed?: InputStore["shouldDisplayed"];
-    isReadOnly?: InputStore["isReadOnly"];
-    isDisabled?: InputStore["isDisabled"];
-    onSubmit?: InputStore["onSubmit"];
-    min?: InputStore["min"];
-    max?: InputStore["max"];
-    scale?: InputStore["scale"];
-    signed?: InputStore["signed"];
-    thousandsSeparator?: InputStore["thousandsSeparator"];
-    radix?: InputStore["radix"];
+    theme?: InputStore['theme'];
+    defaultValue?: InputStore['defaultValue'];
+    label?: InputStore['label'];
+    placeholder?: InputStore['placeholder'];
+    validations?: InputStore['validations'];
+    mask?: InputStore['mask'];
+    shouldDisplayed?: InputStore['shouldDisplayed'];
+    isReadOnly?: InputStore['isReadOnly'];
+    isDisabled?: InputStore['isDisabled'];
+    onSubmit?: InputStore['onSubmit'];
+    min?: InputStore['min'];
+    max?: InputStore['max'];
+    scale?: InputStore['scale'];
+    signed?: InputStore['signed'];
+    thousandsSeparator?: InputStore['thousandsSeparator'];
+    radix?: InputStore['radix'];
 }
 interface InitCommonProps {
     type: InputType.TEXT | InputType.EMAIL | InputType.PASSWORD | InputType.SEARCH | InputType.URL;
-    theme?: InputStore["theme"];
-    defaultValue?: InputStore["defaultValue"];
-    label?: InputStore["label"];
-    placeholder?: InputStore["placeholder"];
-    validations?: InputStore["validations"];
-    mask?: InputStore["mask"];
-    shouldDisplayed?: InputStore["shouldDisplayed"];
-    isReadOnly?: InputStore["isReadOnly"];
-    isDisabled?: InputStore["isDisabled"];
-    onSubmit?: InputStore["onSubmit"];
+    theme?: InputStore['theme'];
+    defaultValue?: InputStore['defaultValue'];
+    label?: InputStore['label'];
+    placeholder?: InputStore['placeholder'];
+    validations?: InputStore['validations'];
+    mask?: InputStore['mask'];
+    shouldDisplayed?: InputStore['shouldDisplayed'];
+    isReadOnly?: InputStore['isReadOnly'];
+    isDisabled?: InputStore['isDisabled'];
+    onSubmit?: InputStore['onSubmit'];
 }
 
 export type InitProps = InitCommonProps | InitNumberProps;
 
-interface MaskObject { unmaskedValue: string; };
+interface MaskObject { unmaskedValue: string; }
 
 export default class InputStore implements FormIntegrationProps, FormItemModel  {
     static theme = FormTheme;
@@ -65,19 +65,19 @@ export default class InputStore implements FormIntegrationProps, FormItemModel  
             this.mask = props.type === InputStore.type.NUMBER
                 ? Number
                 : undefined;
-            set(this, props)
+            set(this, props);
         }
     }
 
-    @observable name: string = "defaultName";
+    @observable name: string = 'defaultName';
     @observable label?: ObservableString;
     @observable theme: FormTheme = InputStore.theme.DEFAULT;
     @observable type: InputType = InputStore.type.TEXT;
-    @observable value: string = "";
-    @observable publicValue: string = "";
+    @observable value: string = '';
+    @observable publicValue: string = '';
     @observable placeholder?: ObservableString;
-    @observable defaultValue: string = "";
-    @observable validations: Array<ValidationType> = [];
+    @observable defaultValue: string = '';
+    @observable validations: ValidationType[] = [];
     @observable mask?: string | CommonMap[] | CommonMap;
 
     @observable shouldDisplayed: boolean = true;
@@ -92,8 +92,8 @@ export default class InputStore implements FormIntegrationProps, FormItemModel  
     @observable max?: number;
     @observable scale: number = 2;
     @observable signed: boolean = true;
-    @observable thousandsSeparator: string = " ";
-    @observable radix: string = ",";
+    @observable thousandsSeparator: string = ' ';
+    @observable radix: string = ',';
 
     @computed get formValue(): string {
         return this.value;
@@ -135,7 +135,7 @@ export default class InputStore implements FormIntegrationProps, FormItemModel  
         this.value = value || defaultValue || this.value;
         this.publicValue = value || defaultValue || this.value;
         this.defaultValue = defaultValue || this.defaultValue;
-        set(this, restProps)
+        set(this, restProps);
     }
 
     @action initValue = (value: string) => {
@@ -152,8 +152,8 @@ export default class InputStore implements FormIntegrationProps, FormItemModel  
     }
 
     @action clear = () => {
-        this.value = "";
-        this.publicValue = "";
+        this.value = '';
+        this.publicValue = '';
         this.shouldValidate = false;
     }
 
@@ -174,7 +174,7 @@ export default class InputStore implements FormIntegrationProps, FormItemModel  
 
     /**
      * Method increment value of input with type number
-     * 
+     *
      * @remarks
      * This method do nothing if `InputStore.type` differs from `NUMBER`
      */
@@ -186,7 +186,7 @@ export default class InputStore implements FormIntegrationProps, FormItemModel  
 
     /**
      * Method decrement value of input with type number
-     * 
+     *
      * @remarks
      * This method do nothing if `InputStore.type` differs from `NUMBER`
      */
@@ -198,7 +198,7 @@ export default class InputStore implements FormIntegrationProps, FormItemModel  
 
     /**
      * Technical method for controlled input
-     * 
+     *
      * @remarks
      * This method do nothing if `InputStore.mask` is set
      */
@@ -211,7 +211,7 @@ export default class InputStore implements FormIntegrationProps, FormItemModel  
 
     /**
      * Technical method for controlled input
-     * 
+     *
      * @remarks
      * This method do nothing if `InputStore.mask` is not set
      */

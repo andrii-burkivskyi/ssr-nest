@@ -1,15 +1,15 @@
-import { computed } from "mobx";
+import { computed } from 'mobx';
 
-import { LocationService } from "../../../../core/services/Location.service";
-import { Routes } from "../../../../core/routes";
-import { Service } from "../../../../core/decorators/service/service.decorator";
+import { LocationService } from '../../../../core/services/Location.service';
+import { Routes } from '../../../../core/routes';
+import { Service } from '../../../../core/decorators/service/service.decorator';
 
-import { HeaderNavI18n } from "./HeaderNav.i18n";
+import { HeaderNavI18n } from './HeaderNav.i18n';
 
-@Service("HeaderNavStore")
+@Service('HeaderNavStore')
 export class HeaderNavStore {
     constructor(
-        public location: LocationService
+        public location: LocationService,
     ) {}
 
     @computed get params(): CommonMap {

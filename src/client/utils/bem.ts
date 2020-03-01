@@ -1,11 +1,11 @@
 import snakeCase from 'lodash.snakecase';
 
-const addClass = (className: string) => className ? ` ${className}` : "";
+const addClass = (className: string) => className ? ` ${className}` : '';
 
 interface ModOptions {
-  [key: string]: string | boolean | undefined
+  [key: string]: string | boolean | undefined;
 }
-const bem = (elementClassName: string, options: ModOptions, addedClassName: string = "") => 
+const bem = (elementClassName: string, options: ModOptions, addedClassName: string = '') =>
   Object.entries(options).reduce((acc, [key, value]) => {
     const modifier = typeof value !== 'boolean'
       ? `${snakeCase(key)}-${value}`

@@ -1,3 +1,3 @@
 export enum KeyCode {
-    ENTER = 13
+    ENTER = 13,
 }

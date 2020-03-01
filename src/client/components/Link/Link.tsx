@@ -15,7 +15,7 @@ interface ComponentProps {
     onClick?: () => void;
     ['data-tip']?: string;
     ['data-for']?: string;
-};
+}
 
 @observer
 class Link extends React.Component<ComponentProps> {
@@ -30,7 +30,7 @@ class Link extends React.Component<ComponentProps> {
     @action onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
         const { to, params } = this.props;
-        this.location.pushWithParams(to, params)
+        this.location.pushWithParams(to, params);
     }
 
     render() {

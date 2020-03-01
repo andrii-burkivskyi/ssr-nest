@@ -1,16 +1,16 @@
 export enum PluralType {
-    CARDINAL = "cardinal",
-    ORDINAL = "ordinal",
-    SELECT = "select"
+    CARDINAL = 'cardinal',
+    ORDINAL = 'ordinal',
+    SELECT = 'select',
 }
 
 export enum CommandType {
-    ZERO = "zero",
-    ONE = "one",
-    TWO = "two",
-    FEW = "few",
-    MANY = "many",
-    OTHER = "other"
+    ZERO = 'zero',
+    ONE = 'one',
+    TWO = 'two',
+    FEW = 'few',
+    MANY = 'many',
+    OTHER = 'other',
 }
 
 export interface ParsedPluralRule {
@@ -22,5 +22,5 @@ export interface ParsedPluralValue {
     isNumber: boolean;
     value: string;
     integer?: string;
-    fraction?: string; 
+    fraction?: string;
 }

@@ -1,9 +1,9 @@
 
-import "reflect-metadata";
-import { QFDKeys } from "./query.decorator";
-import { QueryBase } from "./Query.base";
-import { QueryFieldBase } from "../field/QueryField.base";
-import { DEFAULT_ARRAY } from "../../../../utils/constants";
+import 'reflect-metadata';
+import { QFDKeys } from './query.decorator';
+import { QueryBase } from './Query.base';
+import { QueryFieldBase } from '../field/QueryField.base';
+import { DEFAULT_ARRAY } from '../../../../utils/constants';
 
 export const QueryExtractor = (target: Object) => {
     return {
@@ -13,7 +13,7 @@ export const QueryExtractor = (target: Object) => {
         Constructor: (propertyKey: string) => Reflect.getMetadata(
             QFDKeys.QUERY_FIELD_CONSTRUCTOR,
             target,
-            propertyKey
-        ) as Constructable<QueryFieldBase<Object>> | Constructable<QueryBase<Object>>
-    }
-}
+            propertyKey,
+        ) as Constructable<QueryFieldBase<Object>> | Constructable<QueryBase<Object>>,
+    };
+};

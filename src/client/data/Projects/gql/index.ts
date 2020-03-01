@@ -5,7 +5,7 @@ export default {
                 id
                 #keys
                 name
-                color 
+                color
                 url
                 #keys
             }
@@ -17,7 +17,7 @@ export default {
                 id
                 #keys
                 name
-                color 
+                color
                 url
                 #keys
             }
@@ -34,7 +34,7 @@ export default {
                 id
                 #keys
                 name
-                color 
+                color
                 url
                 #keys
             }
@@ -56,5 +56,5 @@ export default {
                 totalItems
             }
         }
-    `
+    `,
 };

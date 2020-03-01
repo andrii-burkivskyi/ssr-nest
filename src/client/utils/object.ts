@@ -1,4 +1,4 @@
-import isPlainObject from "lodash.isplainobject";
+import isPlainObject from 'lodash.isplainobject';
 
 export const isEmpty = (obj?: CommonMap) => {
     return obj ? Object.keys(obj).length === 0 : false;
@@ -22,8 +22,8 @@ export const clearUndefinedValues = <T extends Object>(obj: T): T  => {
         if (!obj.hasOwnProperty(key) || value === undefined) { return acc; }
 
         if (isPlainObject(value)) { newValue = clearUndefinedValues(value); }
-        if (Array.isArray(value)) { newValue = arrayHandler(value) }
+        if (Array.isArray(value)) { newValue = arrayHandler(value); }
 
-        return { ...acc, [key]: newValue }
+        return { ...acc, [key]: newValue };
     }, {}) as T;
 };

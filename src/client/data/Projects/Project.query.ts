@@ -1,8 +1,8 @@
-import { IDQueryField } from "../../core/decorators/query/IDQueryField";
-import { StringQueryField } from "../../core/decorators/query/StringQueryField";
+import { IDQueryField } from '../../core/decorators/query/IDQueryField';
+import { StringQueryField } from '../../core/decorators/query/StringQueryField';
 
-import { QueryBase } from "../../core/decorators/query/query/Query.base";
-import { QueryField } from "../../core/decorators/query/query/query.decorator";
+import { QueryBase } from '../../core/decorators/query/query/Query.base';
+import { QueryField } from '../../core/decorators/query/query/query.decorator';
 
 export class ProjectQuery extends QueryBase<ProjectQuery> {
     @QueryField(IDQueryField)
@@ -17,4 +17,3 @@ export class ProjectQuery extends QueryBase<ProjectQuery> {
     @QueryField(StringQueryField)
     url!: StringQueryField;
 }
-

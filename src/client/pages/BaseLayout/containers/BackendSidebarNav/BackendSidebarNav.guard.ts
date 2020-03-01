@@ -1,11 +1,11 @@
-import { computed } from "mobx";
+import { computed } from 'mobx';
 
-import { LocationService } from "../../../../core/services/Location.service";
-import { Guard } from "../../../../core/decorators/guard/guard.decorator";
-import { GuardBase } from "../../../../core/decorators/guard/Guard.base";
-import { Routes } from "../../../../core/routes";
+import { LocationService } from '../../../../core/services/Location.service';
+import { Guard } from '../../../../core/decorators/guard/guard.decorator';
+import { GuardBase } from '../../../../core/decorators/guard/Guard.base';
+import { Routes } from '../../../../core/routes';
 
-@Guard("BackendSidebarNavGuard")
+@Guard('BackendSidebarNavGuard')
 export class BackendSidebarNavGuard extends GuardBase {
     constructor(
         private location: LocationService,
@@ -13,8 +13,8 @@ export class BackendSidebarNavGuard extends GuardBase {
 
     route = {
         route: Routes.BACKEND,
-        options: { end: false }
-    }
+        options: { end: false },
+    };
 
     @computed get isActive(): boolean {
         return this.isModuleViewRendered &&

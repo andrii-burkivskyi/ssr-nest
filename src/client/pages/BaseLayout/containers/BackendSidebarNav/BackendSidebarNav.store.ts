@@ -1,14 +1,14 @@
 
-import { computed } from "mobx";
+import { computed } from 'mobx';
 
-import { LocationService } from "../../../../core/services/Location.service";
-import { Routes } from "../../../../core/routes";
-import { Service } from "../../../../core/decorators/service/service.decorator";
+import { LocationService } from '../../../../core/services/Location.service';
+import { Routes } from '../../../../core/routes';
+import { Service } from '../../../../core/decorators/service/service.decorator';
 
-@Service("BackendSidebarNavStore")
+@Service('BackendSidebarNavStore')
 export class BackendSidebarNavStore {
     constructor(
-        public location: LocationService
+        public location: LocationService,
     ) {}
 
     @computed get params(): CommonMap {
