@@ -65,7 +65,7 @@ export class RequestItemBase<DTO = any, ID = any> {
       try {
         const data = await this.createRequest.send({ input: props });
         this.set(data);
-            this.onUpdate?.(this);
+        this.onUpdate?.(this);
       } catch (error) {
         this.clear();
         console.error(error);

@@ -5,6 +5,7 @@ import { Projects } from './Projects.imports';
 import { ProjectsGuard } from './Projects.guard';
 
 @Module({
+  name: "ProjectsModule",
   view: Projects.View,
   model: Projects.Store,
   guard: ProjectsGuard,

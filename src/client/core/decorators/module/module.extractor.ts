@@ -12,6 +12,7 @@ export type AsyncLazyConstructor<T = Record<string, any>> = () => Promise<Constr
 export type SyncLazyConstructor<T = Record<string, any>> = () => Constructable<T>;
 
 export const AsyncModuleExtractor = (target: Record<string, any>) => ({
+  Name: Reflect.getMetadata(MDKeys.NAME, target) as string,
   View: Reflect.getMetadata(MDKeys.VIEW, target) as AsyncLazyConstructor,
   Model: Reflect.getMetadata(MDKeys.MODEL, target) as AsyncLazyConstructor,
   Guard: Reflect.getMetadata(MDKeys.GUARD, target) ?? null as Nullable<AsyncLazyConstructor>,

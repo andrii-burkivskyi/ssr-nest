@@ -13,6 +13,7 @@ export const PagesModulesList = ModuleBase.list(
 );
 
 @Module({
+  name: "BaseLayout",
   view: BaseLayout.View,
   model: BaseLayout.Store,
   modules: [

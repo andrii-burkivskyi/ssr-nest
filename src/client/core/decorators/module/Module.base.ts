@@ -10,7 +10,7 @@ import { isConstructable, isNill } from '../../../utils/typeGuards';
 import { LocationService } from '../../../core/services/Location.service';
 import { GuardBase } from '../guard/Guard.base';
 import { ModulesListBase } from './ModulesList.base';
-import { RequestsService } from '../../services/Requests.service';
+import { SSRService } from '../../services/SSR.service';
 
 class ModuleBase {
     static services = observable.map();
@@ -29,15 +29,10 @@ class ModuleBase {
       observe(this, 'isActive', (change) => { change.newValue ? this.init() : this.clear(); });
     }
 
-    initStateEnd = () => {};
-
-    waitForStateInit = new Promise((resolve) => {
-      this.initStateEnd = resolve;
-    });
-
     parent?: ModuleBase;
 
-    requestService: RequestsService = ModuleBase.services.get(RequestsService);
+    ssrService: SSRService = ModuleBase.services.get(SSRService);
+    done = this.ssrService.startModule();
 
     @observable View: Nullable<Constructable<React.Component<any>>> = null;
 
@@ -103,9 +98,8 @@ class ModuleBase {
       await this.asyncInitModules();
       await this.asyncInitServices();
       await this.asyncInitViewAndModel();
-      await Promise.all(this.requestService.requests);
-
-      this.initStateEnd();
+      await Promise.all(this.ssrService.requests)
+      this.done();
     }
 
     @action private clear = () => {
@@ -176,6 +170,6 @@ class ModuleBase {
 }
 
 ModuleBase.services.set(LocationService, new LocationService());
-ModuleBase.services.set(RequestsService, new RequestsService());
+ModuleBase.services.set(SSRService, new SSRService());
 
 export { ModuleBase };

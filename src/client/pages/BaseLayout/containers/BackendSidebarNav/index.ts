@@ -5,6 +5,7 @@ import { BackendSidebarNav } from './BackendSidebarNav.imports';
 import { BackendSidebarNavGuard } from './BackendSidebarNav.guard';
 
 @Module({
+  name: "BackendSidebarNav",
   guard: BackendSidebarNavGuard,
   view: BackendSidebarNav.View,
   model: BackendSidebarNav.Store,

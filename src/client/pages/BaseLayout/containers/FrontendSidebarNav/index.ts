@@ -5,6 +5,7 @@ import { FrontendSidebarNav } from './FrontendSidebarNav.imports';
 import { FrontendSidebarNavGuard } from './FrontendSidebarNav.guard';
 
 @Module({
+  name: "FrontendSidebarNav",
   guard: FrontendSidebarNavGuard,
   view: FrontendSidebarNav.View,
   model: FrontendSidebarNav.Store,

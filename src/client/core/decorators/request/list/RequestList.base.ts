@@ -1,6 +1,6 @@
 
 import { observable, action, IObservableArray } from 'mobx';
-import { DEFAULT_ARRAY, DEFAULT_OBJECT } from '../../../../utils/constants';
+import { DEFAULT_ARRAY, DEFAULT_OBJECT, DEFAULT_STRING } from '../../../../utils/constants';
 
 import { QueryBase } from '../../../../core/decorators/query/query/Query.base';
 
@@ -11,7 +11,7 @@ import { RequestListExtractor } from './requestList.extractor';
 import { RequestItemBase } from '../item/RequestItem.base';
 import Request from '../request';
 import { ModuleBase } from '../../module/Module.base';
-import { RequestsService } from '../../../services/Requests.service';
+import { SSRService } from '../../../services/SSR.service';
 
 interface InitProps<
     ItemClass extends RequestItemBase<DTO, ID> = any,
@@ -20,6 +20,7 @@ interface InitProps<
     Query extends QueryBase<any> = any,
     FilterInput = any
 > {
+    name?: RequestListBase['name'];
     query?: RequestListBase<ItemClass, DTO, ID, Query, FilterInput >['query'];
     isLocalUpdated?: RequestListBase<ItemClass, DTO, ID, Query, FilterInput>['isLocalUpdated'];
 }
@@ -45,10 +46,11 @@ export class RequestListBase<
               page: input.page ?? this.page,
               take: input.take ?? this.take,
             }));
+      this.name = props.name;
     }
-
-    this.requestService.registerRequest(this.isLoading);
   }
+
+    private name?: string;
 
     private getRequest: Request<IPaginationDTO<Partial<DTO> & ID>, InputOf<IPaginationInput<FilterInput>>>;
 
@@ -66,13 +68,8 @@ export class RequestListBase<
 
     query?: Query;
 
-    requestService: RequestsService = ModuleBase.services.get(RequestsService);
-
-    finishRequestLoading = () => {};
-
-    isLoading = new Promise((resolve) => {
-      this.finishRequestLoading = resolve;
-    });
+    ssrService: SSRService = ModuleBase.services.get(SSRService);
+    done = this.ssrService.startRequest();
 
     @action private onDelete = async (deletedItem: ItemClass) => {
       if (this.isLocalUpdated) {
@@ -110,10 +107,10 @@ export class RequestListBase<
         this.take = data.take;
         this.totalItems = data.totalItems;
 
-        this.finishRequestLoading();
+        this.done({ name: this.name, data })
       } catch (error) {
         console.error(error.toJSON?.());
-        this.finishRequestLoading();
+        this.done()
       }
     }
 

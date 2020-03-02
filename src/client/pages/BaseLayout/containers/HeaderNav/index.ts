@@ -5,6 +5,7 @@ import { HeaderNav } from './HeaderNav.imports';
 import { HeaderNavGuard } from './HeaderNav.guard';
 
 @Module({
+  name: "HeaderNav",
   guard: HeaderNavGuard,
   view: HeaderNav.View,
   model: HeaderNav.Store,
