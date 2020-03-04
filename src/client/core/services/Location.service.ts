@@ -6,7 +6,7 @@ import { TokensToRegexpOptions } from 'path-to-regexp';
 
 import { Service } from '../../core/decorators/service/service.decorator';
 import { matchUrl, buildUrl } from '../../utils/url';
-import { DEFAULT_OBJECT } from '../../utils/constants';
+import { DEFAULT_OBJECT, IS_NODE } from '../../utils/constants';
 
 @Service('LocationService', { isGlobal: true })
 export class LocationService {
@@ -14,7 +14,7 @@ export class LocationService {
     this.history.listen(this.historyListener);
   }
 
-    private history = global
+    private history = IS_NODE()
       ? createMemoryHistory()
       : createBrowserHistory();
 

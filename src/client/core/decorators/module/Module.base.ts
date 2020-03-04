@@ -19,6 +19,7 @@ class ModuleBase {
 
     constructor(parent?: ModuleBase) {
       this.parent = parent;
+      this.name = AsyncModuleExtractor(this).Name;
 
       const GuardClass = AsyncModuleExtractor(this).Guard;
       if (GuardClass) {
@@ -28,6 +29,7 @@ class ModuleBase {
       this.guard.isActive && this.init();
       observe(this, 'isActive', (change) => { change.newValue ? this.init() : this.clear(); });
     }
+    name!: string;
 
     parent?: ModuleBase;
 
@@ -98,7 +100,7 @@ class ModuleBase {
       await this.asyncInitModules();
       await this.asyncInitServices();
       await this.asyncInitViewAndModel();
-      await Promise.all(this.ssrService.requests)
+      await Promise.all(this.ssrService.requests);
       this.done();
     }
 

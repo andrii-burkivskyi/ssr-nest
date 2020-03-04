@@ -36,7 +36,6 @@ export class ProjectsView extends Component<ViewOf<ProjectsStore>> {
               <ProjectsListView model={model.list} />
 
               {/* <button
-                                    data-modal-id={model.modals.project.id}
                                     className={styles.add_project_button}
                                     onClick={model.addNewProject}
                                 >

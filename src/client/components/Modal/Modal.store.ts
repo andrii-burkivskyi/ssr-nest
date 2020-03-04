@@ -26,13 +26,13 @@ export default class ModalStore<ModalInitData = CommonMap> {
     static closeModalsByClick = (event?: MouseEvent) => {
       const clickedElement = (event?.target ?? null) as HTMLElement;
       const reversedOpenedModals = Array.from(ModalStore.openedModals);
-      const modalIds = getParentDataAttributesValue(clickedElement, 'data-modal-id');
+      // const modalIds = getParentDataAttributesValue(clickedElement, 'data-modal-id');
       reversedOpenedModals.some((modal) => {
         const hasContainerElement = modal.containerRef.current?.contains(clickedElement);
-        const hasDataTag = modalIds.includes(modal.id);
-        if (hasContainerElement || hasDataTag) {
-          return true;
-        }
+        // const hasDataTag = modalIds.includes(modal.id);
+        // if (hasContainerElement || hasDataTag) {
+        //   return true;
+        // }
         modal.close();
         return false;
       });

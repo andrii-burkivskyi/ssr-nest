@@ -43,34 +43,23 @@ export class NotFoundInterceptor implements ExceptionFilter {
             <!DOCTYPE html>
             <html>
             <head>
-                <meta charset="UTF-8">
-                <title>App generator</title>
-                <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
-                <style type="text/css">${sheets.toString({ indent: 0, allowEmpty: false })}</style>
+              <meta charset="UTF-8">
+              <title>App generator</title>
+              <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
+              <style id="mobx_ssr_styles" type="text/css">${sheets.toString({ indent: 0, allowEmpty: false })}</style>
             </head>
             <body>
-                <div id="root">${body}</div>
+              <div id="root">${body}</div>
+              <script defer async src="/client/vendors.chunk.js"></script>
+              <script defer async src="/client/core.chunk.js"></script>
+              <script defer async src="/client/main.js"></script>
+              <script id="_MOBX_SSR_DATA_">
+                var __mobx_ssr_data=${JSON.stringify(app.ssrService.data)}
+              </script>
             </body>
             </html>
         `;
         app.ssrService.clear();
-        // const html = `
-        //             <!DOCTYPE html>
-        //             <html>
-        //             <head>
-        //                 <meta charset="UTF-8">
-        //                 <title>App generator</title>
-        //                 <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicon.ico">
-        //             </head>
-        //             <body>
-        //                 <div id="root"></div>
-        //                 <script defer async src="/client/vendors.chunk.js"></script>
-        //                 <script defer async src="/client/core.chunk.js"></script>
-        //                 <script defer async src="/client/main.js"></script>
-        //             </body>
-        //             </html>
-        //         `;
-
         response.send(html);
       }
     }

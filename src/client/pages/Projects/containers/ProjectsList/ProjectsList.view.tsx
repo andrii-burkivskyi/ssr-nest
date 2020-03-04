@@ -27,7 +27,6 @@ export const ProjectsListView = observer(({ model }: ViewOf<ProjectsListStore>) 
           >
             <div className={classes.header}>
               <button
-                data-modal-id={model.modals.project.id}
                 className={classes.control_button}
                 onClick={() => model.modals.project.toggle(project)}
               >

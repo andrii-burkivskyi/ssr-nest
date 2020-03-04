@@ -20,7 +20,7 @@ class Scrollbar extends Component<ViewOf<ComponentProps>> {
     const { children, classes } = this.props;
     return (
       <div className={classes.container}>
-        <Scrollbars>
+        <Scrollbars universal>
           {children}
         </Scrollbars>
       </div>

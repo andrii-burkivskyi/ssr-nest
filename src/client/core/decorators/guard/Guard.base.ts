@@ -1,8 +1,11 @@
 import { observable, action, computed } from 'mobx';
 import { IS_NODE } from '../../../utils/constants';
+import { ModuleBase } from "../module/Module.base";
+import { SSRService } from "../../services/SSR.service";
 
 export class GuardBase {
-    @observable isModuleViewRendered = IS_NODE();
+    ssrService: SSRService = ModuleBase.services.get(SSRService);
+    @observable isModuleViewRendered = !this.ssrService.isInitLoadEnd;
 
     @action onMount = () => {
       this.isModuleViewRendered = true;

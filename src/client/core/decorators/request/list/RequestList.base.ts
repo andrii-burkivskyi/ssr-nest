@@ -40,13 +40,13 @@ export class RequestListBase<
     });
     if (props) {
       this.isLocalUpdated = props.isLocalUpdated ?? this.isLocalUpdated;
-      this.query = props.query;
-            this.query?.subscribe((input) => this.get({
-              ...input,
-              page: input.page ?? this.page,
-              take: input.take ?? this.take,
-            }));
       this.name = props.name;
+      this.query = props.query;
+      this.query?.subscribe((input) => this.get({
+        ...input,
+        page: input.page ?? this.page,
+        take: input.take ?? this.take,
+      }));
     }
   }
 
@@ -95,7 +95,13 @@ export class RequestListBase<
 
     @action get = async (filter: IPaginationInput<FilterInput> = DEFAULT_OBJECT) => {
       try {
-        const data = await this.getRequest.send({ input: filter });
+        let data!: IPaginationDTO<Partial<DTO> & ID>; 
+        if (this.name && this.ssrService.data[this.name]) {
+          data = this.ssrService.data[this.name];
+          this.ssrService.data[this.name] = null;
+        } else {
+          data = await this.getRequest.send({ input: filter });
+        }
 
         const newItems = data.items.map((item) => new this.ItemConstructor({
           ...item,
