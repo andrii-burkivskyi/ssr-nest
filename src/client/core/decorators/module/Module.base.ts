@@ -3,9 +3,7 @@ import * as React from 'react';
 import {
   computed, observe, action, observable,
 } from 'mobx';
-import {
-  AsyncModuleExtractor, ClassExtractor, AsyncLazyConstructor, AsyncModuleItem, SyncModuleExtractor, SyncLazyConstructor,
-} from './module.extractor';
+import { ModuleExtractor, ClassExtractor, AsyncLazyConstructor } from './module.extractor';
 import { isConstructable, isNill } from '../../../utils/typeGuards';
 import { LocationService } from '../../../core/services/Location.service';
 import { GuardBase } from '../guard/Guard.base';
@@ -19,14 +17,15 @@ class ModuleBase {
 
     constructor(parent?: ModuleBase) {
       this.parent = parent;
-      this.name = AsyncModuleExtractor(this).Name;
+      this.name = ModuleExtractor(this).Name;
 
-      const GuardClass = AsyncModuleExtractor(this).Guard;
+      const GuardClass = ModuleExtractor(this).Guard;
       if (GuardClass) {
         this.guard = this.injectGuardDependencies(GuardClass);
       }
+      this.ssrService.modules.start();
 
-      this.guard.isActive && this.init();
+      this.guard.isActive ? this.init() : this.ssrService.modules.done();
       observe(this, 'isActive', (change) => { change.newValue ? this.init() : this.clear(); });
     }
     name!: string;
@@ -34,7 +33,6 @@ class ModuleBase {
     parent?: ModuleBase;
 
     ssrService: SSRService = ModuleBase.services.get(SSRService);
-    done = this.ssrService.startModule();
 
     @observable View: Nullable<Constructable<React.Component<any>>> = null;
 
@@ -58,7 +56,7 @@ class ModuleBase {
       const { modules, modulesLists }: {
             modules: AsyncLazyConstructor[];
             modulesLists: ModulesListBase[];
-        } = AsyncModuleExtractor(this).modules
+        } = ModuleExtractor(this).modules
           .reduce((acc, m) => {
             m instanceof ModulesListBase
               ? acc.modulesLists.push(m)
@@ -83,25 +81,25 @@ class ModuleBase {
 
     @action private asyncInitViewAndModel = async () => {
       const [View, Model] = await Promise.all([
-        AsyncModuleExtractor(this).View(),
-        AsyncModuleExtractor(this).Model(),
+        ModuleExtractor(this).View(),
+        ModuleExtractor(this).Model(),
       ]);
       this.View = View as Constructable<React.Component>;
       this.injectModelDependencies(Model);
     }
 
     @action private asyncInitServices = async () => {
-      const services = await Promise.all(AsyncModuleExtractor(this).services.map((lazyService) => lazyService()));
+      const services = await Promise.all(ModuleExtractor(this).services.map((lazyService) => lazyService()));
       services.forEach((Service) => { this.services.set(Service, null); });
       services.forEach((Service) => this.injectDependencies(Service));
     }
 
     @action private init = async () => {
-      await this.asyncInitModules();
       await this.asyncInitServices();
       await this.asyncInitViewAndModel();
-      await Promise.all(this.ssrService.requests);
-      this.done();
+      await this.ssrService.requests.isComplete;
+      await this.asyncInitModules();
+      this.ssrService.modules.done();
     }
 
     @action private clear = () => {

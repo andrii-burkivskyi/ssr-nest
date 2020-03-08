@@ -1,5 +1,4 @@
 import { observable, action, computed } from 'mobx';
-import { IS_NODE } from '../../../utils/constants';
 import { ModuleBase } from "../module/Module.base";
 import { SSRService } from "../../services/SSR.service";
 

@@ -6,46 +6,46 @@ import { ModulesListBase } from './ModulesList.base';
 
 @observer
 export class ModuleView<T extends ModuleBase> extends React.Component<ModuleOf<T | ModulesListBase>> {
-    @computed get module(): Nullable<ModuleBase> {
+  @computed get module(): Nullable<ModuleBase> {
     return this.props.module instanceof ModulesListBase
       ? this.props.module.item
       : this.props.module;
   }
 
-    @action
-    componentDidMount() {
-        this.props?.module instanceof ModulesListBase
-          ? this.props?.module.onMount()
-          : this.props?.module.guard.onMount();
+  @action
+  componentDidMount() {
+      this.props?.module instanceof ModulesListBase
+        ? this.props?.module.onMount()
+        : this.props?.module.guard.onMount();
+  }
+
+  @action
+  componentWillUnmount() {
+      this.props?.module instanceof ModulesListBase
+        ? this.props?.module.onUnmount()
+        : this.props?.module.guard.onUnmount();
+  }
+
+  render() {
+    if (!this.module) {
+          this.props?.module instanceof ModulesListBase
+            ? this.props?.module.initModules.length === 0 && console.error('Cannot render ModuleView without module list store item')
+            : console.error('Cannot render ModuleView without module');
+          return null;
     }
 
-    @action
-    componentWillUnmount() {
-        this.props?.module instanceof ModulesListBase
-          ? this.props?.module.onUnmount()
-          : this.props?.module.guard.onUnmount();
+    const { View } = this.module;
+    const { model } = this.module;
+
+    if (!this.module.shouldDisplay || !View || !model) { return null; }
+    if (!this.module.parent) {
+      return (
+        <Provider state={this.props.module}>
+          <View model={model} />
+        </Provider>
+      );
     }
 
-    render() {
-      if (!this.module) {
-            this.props?.module instanceof ModulesListBase
-              ? this.props?.module.initModules.length === 0 && console.error('Cannot render ModuleView without module list store item')
-              : console.error('Cannot render ModuleView without module');
-            return null;
-      }
-
-      const { View } = this.module;
-      const { model } = this.module;
-
-      if (!this.module.shouldDisplay || !View || !model) { return null; }
-      if (!this.module.parent) {
-        return (
-          <Provider state={this.props.module}>
-            <View model={model} />
-          </Provider>
-        );
-      }
-
-      return (<View model={model} />);
-    }
+    return (<View model={model} />);
+  }
 }

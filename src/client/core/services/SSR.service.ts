@@ -6,63 +6,32 @@ import { TokensToRegexpOptions } from 'path-to-regexp';
 import { Service } from '../../core/decorators/service/service.decorator';
 import { matchUrl, buildUrl } from '../../utils/url';
 import { DEFAULT_OBJECT, IS_NODE } from '../../utils/constants';
+import { AsyncTracker } from "../common/AsyncTracker.store";
 
 interface DataItem {
   name?: string;
   data?: any;
 }
 
-interface Done {
-  (props?: DataItem)
-}
-
 @Service('SSRService', { isGlobal: true })
 export class SSRService {
-  constructor() {
-    if (!IS_NODE()) {
-      this.data = window['__mobx_ssr_data'];
-    }
-  }
   isInitLoadEnd = false; 
-  requests: Array<Promise<any>> = [];
-  modules: Array<Promise<void>> = [];
-  data: CommonMap = {};
 
-  startModule = () => {
-    let done = () => {};
-    if (!this.isInitLoadEnd) {
-      const promise = new Promise<void>((resolve) => {
-        done = () => { resolve(); };
-      });
-      this.modules.push(promise);
-    }
-    return done;
-  }
+  requests = new AsyncTracker({
+    storage: '__mobx_ssr_data',
+  });
 
-  startRequest = () => {
-    let done: Done = () => {};
-    if (!this.isInitLoadEnd) {
-      const promise = new Promise<void>((resolve) => {
-        done = (props) => {
-          if (props?.name && props?.data) {
-            this.data = {
-              ...this.data,
-              [props.name]: props.data
-            }
+  modules = new AsyncTracker()
 
-          }
-          resolve();
-        };
-      });
-      this.requests.push(promise);
-    }
-    return done;
+  init = () => {
+    this.isInitLoadEnd = false;
+    this.requests.init();
+    this.modules.init();
   }
 
   clear = () => {
-    this.requests = [];
-    this.modules = [];
-    this.data = new Map();
-    this.isInitLoadEnd;
+    this.isInitLoadEnd = true;
+    this.requests.clear();
+    this.modules.clear();
   }
 }

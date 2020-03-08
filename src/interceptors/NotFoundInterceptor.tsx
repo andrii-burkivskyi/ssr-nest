@@ -8,6 +8,7 @@ import { BaseLayoutModule } from '../client/pages/BaseLayout';
 import { ModuleView } from '../client/core/decorators/module/Module.view';
 import { LocationService } from '../client/core/services/Location.service';
 import { ModuleBase } from '../client/core/decorators/module/Module.base';
+import { SSRService } from "../client/core/services/SSR.service";
 
 const isFileUrl = (path: string) => {
   const files = [
@@ -31,7 +32,8 @@ export class NotFoundInterceptor implements ExceptionFilter {
         const app = new BaseLayoutModule();
         const location: LocationService = ModuleBase.services.get(LocationService);
         location.pathname = host.getArgByIndex(0).originalUrl;
-        await Promise.all(app.ssrService.modules);
+        await app.ssrService.modules.isComplete;
+        await app.ssrService.requests.isComplete;
 
         const sheets = new SheetsRegistry();
         const body = ReactDOMServer.renderToString((
@@ -54,13 +56,13 @@ export class NotFoundInterceptor implements ExceptionFilter {
               <script defer async src="/client/core.chunk.js"></script>
               <script defer async src="/client/main.js"></script>
               <script id="_MOBX_SSR_DATA_">
-                var __mobx_ssr_data=${JSON.stringify(app.ssrService.data)}
+                var __mobx_ssr_data=${JSON.stringify(app.ssrService.requests.data)}
               </script>
             </body>
             </html>
         `;
-        app.ssrService.clear();
         response.send(html);
+        app.ssrService.init();
       }
     }
   }

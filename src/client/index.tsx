@@ -7,15 +7,19 @@ import { JssProvider, SheetsRegistry } from "react-jss";
 const render = async () => {
   const app = new BaseLayoutModule();
   window["app"] = app;
-  await Promise.all(app.ssrService.modules);
+  await app.ssrService.modules.isComplete;
   const sheets = new SheetsRegistry();
+  console.time("test")
 
   ReactDOM.hydrate(
     <JssProvider registry={sheets}>
       <ModuleView module={app} />
     </JssProvider>,
     document.getElementById('root'),
-    () => app.ssrService.clear()
+    () => {
+      console.timeEnd("test")
+      app.ssrService.clear();
+    }
   );
 }
 

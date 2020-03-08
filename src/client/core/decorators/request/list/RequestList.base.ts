@@ -69,7 +69,6 @@ export class RequestListBase<
     query?: Query;
 
     ssrService: SSRService = ModuleBase.services.get(SSRService);
-    done = this.ssrService.startRequest();
 
     @action private onDelete = async (deletedItem: ItemClass) => {
       if (this.isLocalUpdated) {
@@ -94,11 +93,13 @@ export class RequestListBase<
     }
 
     @action get = async (filter: IPaginationInput<FilterInput> = DEFAULT_OBJECT) => {
+
+      this.ssrService.requests.start()
       try {
         let data!: IPaginationDTO<Partial<DTO> & ID>; 
-        if (this.name && this.ssrService.data[this.name]) {
-          data = this.ssrService.data[this.name];
-          this.ssrService.data[this.name] = null;
+        if (this.name && this.ssrService.requests.data[this.name]) {
+          data = this.ssrService.requests.data[this.name];
+          this.ssrService.requests.data[this.name] = null;
         } else {
           data = await this.getRequest.send({ input: filter });
         }
@@ -113,10 +114,10 @@ export class RequestListBase<
         this.take = data.take;
         this.totalItems = data.totalItems;
 
-        this.done({ name: this.name, data })
+        this.name && this.ssrService.requests.done({ [this.name]: data })
       } catch (error) {
         console.error(error.toJSON?.());
-        this.done()
+        this.ssrService.requests.done()
       }
     }
 

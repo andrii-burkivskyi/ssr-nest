@@ -60,7 +60,7 @@
     "lodash.isplainobject": "^4.0.6",
     "lodash.snakecase": "^4.1.1",
     "lodash.throttle": "^4.1.1",
-    "mobx": "^5.15.2",
+    "mobx": "^5.15.4",
     "mobx-react": "^6.1.4",
     "mobx-utils": "^5.5.3",
     "natural-orderby": "^2.0.3",

@@ -7,7 +7,7 @@ import { Routes } from '../../core/routes';
 @Guard('ProjectsGuard')
 export class ProjectsGuard extends GuardBase {
   constructor(
-        private location: LocationService,
+    private location: LocationService,
   ) { super(); }
 
     route = {
