@@ -62,7 +62,7 @@ export class NotFoundInterceptor implements ExceptionFilter {
             </html>
         `;
         response.send(html);
-        app.ssrService.init();
+        app.ssrService.serverClear();
       }
     }
   }

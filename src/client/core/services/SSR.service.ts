@@ -23,7 +23,7 @@ export class SSRService {
 
   modules = new AsyncTracker()
 
-  init = () => {
+  serverClear = () => {
     this.isInitLoadEnd = false;
     this.requests.init();
     this.modules.init();

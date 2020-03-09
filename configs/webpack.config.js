@@ -30,7 +30,7 @@ const config =  {
 
     watchOptions: { aggregateTimeout: 100 },
 
-    devtool: "eval-source-map",
+    devtool: "cheap-module-source-map",
 
     module: {
         rules: [
