@@ -4,12 +4,14 @@ import { Service } from '../../core/decorators/service/service.decorator';
 import { ProjectsI18n } from './Projects.i18n';
 import { ProjectsListStore } from './containers/ProjectsList/ProjectsList.store';
 import { ProjectsModals } from './Projects.modals';
+import { ProjectsForms } from "./Projects.forms";
 
 @Service('ProjectsStore')
 export class ProjectsStore {
   constructor(
         public list: ProjectsListStore,
         public modals: ProjectsModals,
+        public projectsForms: ProjectsForms,
   ) {}
 
     @computed get i18n() {

@@ -4,8 +4,6 @@ import { ModuleView } from './core/decorators/module/Module.view';
 import { BaseLayoutModule } from './pages/BaseLayout/index';
 import { JssProvider, SheetsRegistry } from "react-jss";
 
-const a = { } as CommonMap;
-
 const render = async () => {
   const app = new BaseLayoutModule();
   await app.ssrService.modules.isComplete;

@@ -13,6 +13,7 @@ import { ProjectsGuard } from './Projects.guard';
     Projects.RequestService,
     Projects.ListService,
     Projects.ModalsService,
+    Projects.FormsService,
   ],
 })
 export class ProjectsModule extends ModuleBase {}

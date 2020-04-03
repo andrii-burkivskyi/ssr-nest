@@ -34,10 +34,9 @@ export class ModuleView<T extends ModuleBase> extends React.Component<ModuleOf<T
           return null;
     }
 
-    const { View } = this.module;
-    const { model } = this.module;
+    const { View, model } = this.module;
 
-    if (!this.module.shouldDisplay || !View || !model) { return null; }
+    if (!View || !model) { return null; }
     if (!this.module.parent) {
       return (
         <Provider state={this.props.module}>

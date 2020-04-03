@@ -4,7 +4,7 @@ import {
 
 import Link from '../Link/Link';
 
-import { ObservableString } from '../../utils/types';
+import { I18nString } from '../../utils/types';
 import { blurAll } from '../../utils/dom';
 
 enum ButtonTheme {
@@ -66,7 +66,7 @@ export default class ButtonStore {
 
     @observable iconWidth?: number;
 
-    @observable text?: ObservableString;
+    @observable text?: I18nString;
 
     @observable counter?: number;
 

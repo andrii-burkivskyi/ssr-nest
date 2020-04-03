@@ -16,6 +16,7 @@ interface CommonMap {
 }
 
 interface ViewOf<T> {
+    className?: string;
     classes?: any;
     style?: React.CSSProperties;
     model: T;

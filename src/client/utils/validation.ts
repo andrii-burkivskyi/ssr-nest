@@ -1,4 +1,4 @@
-import { ObservableString } from './types';
+import { I18nString } from './types';
 
 export const isRequired = (value: string): boolean => Boolean(value);
 
@@ -8,10 +8,10 @@ export const isEmail = (value: string): boolean => !Boolean(value) ||
 export const isPhone = (value: string): boolean => !Boolean(value) ||
     Boolean(value.match(/^380\d{9}$/i));
 
-export type ValidationType = [(value: any) => boolean, ObservableString, () => CommonMap] |
-    [(value: any) => boolean, ObservableString];
+export type ValidationType = [(value: any) => boolean, I18nString, () => CommonMap] |
+    [(value: any) => boolean, I18nString];
 
-type Validate = (value: any, arr: ValidationType[]) => [ObservableString, CommonMap];
+type Validate = (value: any, arr: ValidationType[]) => [I18nString, CommonMap];
 
 export const validate: Validate = (value, arr) => {
   const result: ValidationType | undefined = arr.find(([validator]) => !validator(value));

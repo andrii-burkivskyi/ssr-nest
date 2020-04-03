@@ -1,4 +1,4 @@
-import { ObservableString } from '../../utils/types';
+import { I18nString } from '../../utils/types';
 
 export interface FormIntegrationProps {
     formValue: any;
@@ -13,8 +13,8 @@ export interface FormIntegrationProps {
 
 export interface FormItemModel {
     theme: FormTheme;
-    label?: ObservableString;
-    error?: ObservableString;
+    label?: I18nString;
+    error?: I18nString;
     isReadOnly: boolean;
     isDisabled: boolean;
     shouldDisplayed: boolean;

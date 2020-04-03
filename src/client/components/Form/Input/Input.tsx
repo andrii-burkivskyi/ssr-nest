@@ -9,7 +9,7 @@ import FormItem from '../../Form/FormItem/FormItem';
 import bem from '../../../utils/bem';
 import { t } from '../../../utils/i18n/translations';
 
-import arrow from '../../../icons/arrow.svg';
+// import arrow from '../../../icons/arrow.svg';
 
 import InputStore from './Input.store';
 // import styles from "./form_input.scss";

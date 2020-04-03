@@ -6,7 +6,7 @@ import {
 import { validate, ValidationType } from '../../../utils/validation';
 import { t } from '../../../utils/i18n/translations';
 import { KeyCode } from '../../../utils/keyboard';
-import { ObservableString } from '../../../utils/types';
+import { I18nString } from '../../../utils/types';
 
 import {
   TabIndex, FormTheme, FormIntegrationProps, FormItemModel,
@@ -76,7 +76,7 @@ export default class InputStore implements FormIntegrationProps, FormItemModel {
 
     @observable name = 'defaultName';
 
-    @observable label?: ObservableString;
+    @observable label?: I18nString;
 
     @observable theme: FormTheme = InputStore.theme.DEFAULT;
 
@@ -86,7 +86,7 @@ export default class InputStore implements FormIntegrationProps, FormItemModel {
 
     @observable publicValue = '';
 
-    @observable placeholder?: ObservableString;
+    @observable placeholder?: I18nString;
 
     @observable defaultValue = '';
 

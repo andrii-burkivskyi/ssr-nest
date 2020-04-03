@@ -9,31 +9,30 @@ export class ModulesListBase {
     this.modules = modules;
   }
 
-    ssrService: SSRService = ModuleBase.services.get(SSRService);
-    // done = this.ssrService.startModule("ModuleListBase");
+  ssrService: SSRService = ModuleBase.services.get(SSRService);
 
-    @observable modules: Array<AsyncLazyConstructor<ModuleBase>>;
+  @observable modules: Array<AsyncLazyConstructor<ModuleBase>>;
 
-    @observable initModules = [] as ModuleBase[];
+  @observable initModules = [] as ModuleBase[];
 
-    @computed get item(): Nullable<ModuleBase> {
-      return this.initModules.find((m) => m.guard.isActive) ?? null;
-    }
+  @computed get item(): Nullable<ModuleBase> {
+    return this.initModules.find((m) => m.guard.isActive) ?? null;
+  }
 
-    @action init = async (parent: ModuleBase) => {
-      this.ssrService.modules.start();
-      const modules = await Promise.all(this.modules.map((lazyModule) => lazyModule()));
-      modules.forEach((Module) => {
-        this.initModules.push(new Module(parent));
-      });
-      this.ssrService.modules.done();
-    }
+  @action init = async (parent: ModuleBase) => {
+    this.ssrService.modules.start();
+    const modules = await Promise.all(this.modules.map((lazyModule) => lazyModule()));
+    modules.forEach((Module) => {
+      this.initModules.push(new Module(parent));
+    });
+    this.ssrService.modules.done();
+  }
 
-    @action onMount = () => {
-      this.initModules.forEach((m) => m.guard.onMount());
-    }
+  @action onMount = () => {
+    this.initModules.forEach((m) => m.guard.onMount());
+  }
 
-    @action onUnmount = () => {
-      this.initModules.forEach((m) => m.guard.onUnmount());
-    }
+  @action onUnmount = () => {
+    this.initModules.forEach((m) => m.guard.onUnmount());
+  }
 }

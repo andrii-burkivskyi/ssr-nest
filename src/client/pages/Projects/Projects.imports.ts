@@ -3,5 +3,6 @@ export const Projects = {
   View: () => import(/* webpackChunkName: "projects_page" */ './Projects.view').then((module) => module.ProjectsView),
   RequestService: () => import(/* webpackChunkName: "projects_page" */ './Projects.requests').then((module) => module.ProjectsRequests),
   ListService: () => import(/* webpackChunkName: "projects_page" */ './containers/ProjectsList/ProjectsList.store').then((module) => module.ProjectsListStore),
+  FormsService: () => import(/* webpackChunkName: "projects_page" */ './Projects.forms').then((module) => module.ProjectsForms),
   ModalsService: () => import(/* webpackChunkName: "projects_page" */ './Projects.modals').then((module) => module.ProjectsModals),
 };

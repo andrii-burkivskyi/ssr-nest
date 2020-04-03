@@ -5,7 +5,7 @@ import {
 } from 'mobx';
 import { FormTheme, FormItemModel, FormIntegrationProps } from '../Form.types';
 import { validate, ValidationType } from '../../../utils/validation';
-import { ObservableString } from '../../../utils/types';
+import { I18nString } from '../../../utils/types';
 import { t } from '../../../utils/i18n/translations';
 import ModalStore from '../../../components/Modal/Modal.store';
 import OptionStore from '../../../components/Form/Option/Option.store';
@@ -20,7 +20,7 @@ export interface InitProps<T = CommonMap> {
     placeholder?: SelectStore<T>['placeholder'];
     defaultValue?: string | number;
     options: T[];
-    getOptionLabel: (option: T) => ObservableString;
+    getOptionLabel: (option: T) => I18nString;
     getOptionValue: (option: T) => number | string;
     search?: SelectStore<T>['search'];
     validations?: SelectStore<T>['validations'];
@@ -89,9 +89,9 @@ export default class SelectStore<T = CommonMap> implements FormIntegrationProps,
 
     @observable theme: FormTheme = SelectStore.theme.DEFAULT;
 
-    @observable label?: ObservableString;
+    @observable label?: I18nString;
 
-    @observable placeholder?: ObservableString;
+    @observable placeholder?: I18nString;
 
     @observable defaultValue: Nullable<OptionStore> = null;
 

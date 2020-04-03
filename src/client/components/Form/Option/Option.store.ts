@@ -1,6 +1,6 @@
 import { observable, action, set } from 'mobx';
 
-import { ObservableString } from '../../../utils/types';
+import { I18nString } from '../../../utils/types';
 import { FormTheme } from '../../../components/Form/Form.types';
 
 interface InitProps {
@@ -27,7 +27,7 @@ export default class OptionStore {
 
     @observable theme: FormTheme = OptionStore.theme.DEFAULT;
 
-    @observable label: ObservableString;
+    @observable label: I18nString;
 
     @observable value: number | string;
 

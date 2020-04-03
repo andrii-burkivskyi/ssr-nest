@@ -9,7 +9,7 @@ import {
   TabIndex, FormIntegrationProps, FormItemModel, FormTheme,
 } from '../../../components/Form/Form.types';
 import watch from '../../../utils/watch';
-import { ObservableString } from '../../../utils/types';
+import { I18nString } from '../../../utils/types';
 
 export interface InitProps {
     defaultValue?: TextAreaStore['defaultValue'];
@@ -45,7 +45,7 @@ export default class TextAreaStore implements FormIntegrationProps, FormItemMode
 
     @observable theme: FormTheme = TextAreaStore.theme.DEFAULT;
 
-    @observable label: ObservableString = '';
+    @observable label: I18nString = '';
 
     @observable defaultValue: Nullable<string> = null;
 

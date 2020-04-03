@@ -2,7 +2,7 @@ import { orderBy } from 'natural-orderby';
 import Translation from '../../core/common/Translation.store';
 
 import { isString } from '../../utils/typeGuards';
-import { ObservableString } from '../../utils/types';
+import { I18nString } from '../../utils/types';
 
 import { strictCommand, cardinalCommands, ordinalCommands } from './commands';
 import {
@@ -27,7 +27,7 @@ export const commands = [
  * @example ```{plural[O],value,one[#st]|two[#nd item]|few[#rd item]|other[#th item]}" => "1st item" | "2nd item" | "3rd item" | "4th item"```
  * @description for plural rules read https://unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html
  */
-export const t = (str: ObservableString = '', values: CommonMap = {}) => {
+export const t = (str: I18nString = '', values: CommonMap = {}) => {
   const clearStr = isString(str) ? str : str.get();
   const strWithReplacedParams = replaceParams(clearStr, values);
   const strWithReplacedPlural = replacePlural(strWithReplacedParams, values);
