@@ -47,7 +47,7 @@
     "@types/react-virtualized": "^9.21.8",
     "apollo-server-core": "^2.10.1",
     "apollo-server-express": "^2.10.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.6",
     "cross-env": "^7.0.0",
     "dom-align": "^1.10.4",
